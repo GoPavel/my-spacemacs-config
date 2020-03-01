@@ -366,6 +366,7 @@ you should place your code here."
  '(flycheck-python-pycompile-executable "python3")
  '(flycheck-python-pylint-executable "python3")
  '(haskell-font-lock-symbols t)
+ '(helm-completion-style (quote emacs))
  '(hl-todo-keyword-faces
    (quote
     (("REVIEW" . "#7cb8bb")
@@ -396,7 +397,7 @@ you should place your code here."
  '(neo-smart-open t)
  '(neo-theme (quote icons))
  '(neo-vc-integration (quote (face)))
- '(neo-window-width 32)
+ '(neo-window-width 28)
  '(org-agenda-files
    (quote
     ("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH")))
