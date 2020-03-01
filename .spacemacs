@@ -32,42 +32,41 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     sql
-     html
-     idris
-     octave
-     yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
+     auto-completion
+     git
+     org
+     spell-checking
+     syntax-checking
+     version-control
+     emacs-lisp
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     ;; < Language layers >
      python
      markdown
-     ;; yalm
+     sql
+     html
+     idris
+     octave
+     yaml
      c-c++
      coq
-     ;; archived layer
-        ;; intero
+     latex
+     java
+     ;; intero (not used anymore)
      (haskell :variables
               haskell-completion-backend 'intero
               ;; haskell-enable-hindent-style "fundamental"
               )
      ;; TODO hindent, structured-haskell-mode
-     auto-completion
-     ;; better-defaults
-     emacs-lisp
-     git
-     org
-     (shell :variables
-             shell-default-height 30
-             shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
-     version-control
-     latex
-     java
+     ;; TODO better-defaults
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
