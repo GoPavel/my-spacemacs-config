@@ -61,8 +61,10 @@ values."
      latex
      java
      ;; intero (not used anymore)
+     ;; lsp
      (haskell :variables
               haskell-completion-backend 'intero
+              haskell-process-type 'stack-ghci
               ;; haskell-enable-hindent-style "fundamental"
               )
      ;; TODO hindent, structured-haskell-mode
@@ -77,6 +79,11 @@ values."
     cdlatex
     org-fancy-priorities
     all-the-icons
+
+    lsp-haskell
+    company-lsp
+    lsp-mode
+    ;; lsp-ui TODO
     ;; org-ql [https://github.com/alphapapa/org-ql]
   ;;  structured-haskell-mode
     )
@@ -343,6 +350,7 @@ you should place your code here."
   (defconst lisp--prettify-symbols-alist
     '(("lambda"  . ?λ)))
 
+
   (global-prettify-symbols-mode +1)
   (use-package org-fancy-priorities
     :ensure t
@@ -351,6 +359,16 @@ you should place your code here."
     :config
     (setq org-fancy-priorities-list '("λλλ" "λλ" "λ")))
   (setq neo-vc-integration '(face))
+
+  ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
+  ;; TODO create issue
+  ;;(setq lsp-haskell-process-path-hie "hie-wrapper")
+  ;;(require 'lsp-mode)
+  ;;(require 'lsp-haskell)
+  ;;(add-hook 'haskell-mode-hook #'lsp)
+
+  ;;(require 'company-lsp)
+  ;;(push 'company-lsp company-backends)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -385,18 +403,19 @@ you should place your code here."
      ("FIXME" . "#cc9393")
      ("XXX+" . "#cc9393")
      ("\\?\\?\\?+" . "#cc9393"))))
- '(neo-auto-indent-point t)
- '(neo-banner-message "Press ? for neotree help")
- '(neo-create-file-auto-open t)
+ '(lsp-log-io t)
+ '(neo-auto-indent-point t t)
+ '(neo-banner-message "Press ? for neotree help" t)
+ '(neo-create-file-auto-open t t)
  '(neo-hidden-regexp-list
    (quote
     ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$")))
- '(neo-show-hidden-files t)
- '(neo-show-updir-line nil)
- '(neo-smart-open t)
+ '(neo-show-hidden-files t t)
+ '(neo-show-updir-line nil t)
+ '(neo-smart-open t t)
  '(neo-theme (quote icons))
- '(neo-vc-integration (quote (face)))
- '(neo-window-width 28)
+ '(neo-vc-integration (quote (face)) t)
+ '(neo-window-width 28 t)
  '(org-agenda-files
    (quote
     ("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH")))
@@ -428,7 +447,7 @@ you should place your code here."
     ("/usr/share/emacs/26.2/site-lisp/elpa" "/usr/share/emacs/site-lisp/elpa")))
  '(package-selected-packages
    (quote
-    (memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(python-shell-interpreter "python" t)
  '(word-wrap t))
 (custom-set-faces
