@@ -49,6 +49,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      ;; < Language layers >
+     ocaml
      python
      markdown
      sql
@@ -60,7 +61,7 @@ values."
      coq
      latex
      java
-     ;; intero (not used anymore)
+     ;; intero
      ;; lsp
      (haskell :variables
               haskell-completion-backend 'intero
@@ -379,11 +380,13 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-pos-tip-timeout 20)
  '(flycheck-python-flake8-executable "python3")
  '(flycheck-python-pycompile-executable "python3")
  '(flycheck-python-pylint-executable "python3")
  '(haskell-font-lock-symbols t)
  '(helm-completion-style (quote emacs))
+ '(hindent-style nil)
  '(hl-todo-keyword-faces
    (quote
     (("REVIEW" . "#7cb8bb")
@@ -400,22 +403,27 @@ you should place your code here."
      ("KLUDGE" . "#d0bf8f")
      ("HACK" . "#d0bf8f")
      ("TEMP" . "#d0bf8f")
-     ("FIXME" . "#cc9393")
+     ("FIXME" . "orange2")
      ("XXX+" . "#cc9393")
-     ("\\?\\?\\?+" . "#cc9393"))))
+     ("\\?\\?\\?+" . "#cc9393")
+     ("ASK" . "cyan2")
+     ("MAYBE" . "orchid")
+     ("WAIT" . "#00bfff")
+     ("BUG" . "red2")
+     ("CHECK" . "#cdcd00"))))
  '(lsp-log-io t)
- '(neo-auto-indent-point t t)
- '(neo-banner-message "Press ? for neotree help" t)
- '(neo-create-file-auto-open t t)
+ '(neo-auto-indent-point t)
+ '(neo-banner-message "Press ? for neotree help")
+ '(neo-create-file-auto-open t)
  '(neo-hidden-regexp-list
    (quote
     ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$")))
- '(neo-show-hidden-files t t)
- '(neo-show-updir-line nil t)
- '(neo-smart-open t t)
+ '(neo-show-hidden-files t)
+ '(neo-show-updir-line nil)
+ '(neo-smart-open t)
  '(neo-theme (quote icons))
- '(neo-vc-integration (quote (face)) t)
- '(neo-window-width 28 t)
+ '(neo-vc-integration (quote (face)))
+ '(neo-window-width 28)
  '(org-agenda-files
    (quote
     ("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH")))
@@ -449,6 +457,7 @@ you should place your code here."
    (quote
     (company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(python-shell-interpreter "python" t)
+ '(tooltip-hide-delay 20)
  '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -456,6 +465,7 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(neo-vc-ignored-face ((t (:foreground "dim gray"))))
+ '(neo-vc-unregistered-face ((t (:foreground "sienna"))) t)
  '(proof-eager-annotation-face ((t (:background "medium blue"))))
  '(proof-error-face ((t (:background "dark red"))))
  '(proof-warning-face ((t (:background "indianred3")))))
