@@ -339,6 +339,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'coq-mode-hook 'column-enforce-mode)
   (setq-default dotspacemacs-configuration-layers
     '(syntax-checking :variables syntax-checking-enable-by-default nil))
+  (add-hook 'latex-mode-hook (lambda () (set-fill-column 115))) ;; github line wrap
+  (add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 115)))
   )
 
 (defun dotspacemacs/user-config ()
@@ -410,20 +412,21 @@ you should place your code here."
      ("MAYBE" . "orchid")
      ("WAIT" . "#00bfff")
      ("BUG" . "red2")
-     ("CHECK" . "#cdcd00"))))
+     ("CHECK" . "#cdcd00")
+     ("FEATURE" . "wheat"))))
  '(lsp-log-io t)
- '(neo-auto-indent-point t)
- '(neo-banner-message "Press ? for neotree help")
- '(neo-create-file-auto-open t)
+ '(neo-auto-indent-point t t)
+ '(neo-banner-message "Press ? for neotree help" t)
+ '(neo-create-file-auto-open t t)
  '(neo-hidden-regexp-list
    (quote
     ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$")))
- '(neo-show-hidden-files t)
- '(neo-show-updir-line nil)
- '(neo-smart-open t)
+ '(neo-show-hidden-files t t)
+ '(neo-show-updir-line nil t)
+ '(neo-smart-open t t)
  '(neo-theme (quote icons))
- '(neo-vc-integration (quote (face)))
- '(neo-window-width 28)
+ '(neo-vc-integration (quote (face)) t)
+ '(neo-window-width 28 t)
  '(org-agenda-files
    (quote
     ("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH")))
