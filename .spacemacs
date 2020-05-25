@@ -48,6 +48,7 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     reverse-input-method ;; https://github.com/avkorablev/reverse-input-method-layer.git
      ;; < Language layers >
      ocaml
      python
@@ -362,6 +363,8 @@ you should place your code here."
     :config
     (setq org-fancy-priorities-list '("λλλ" "λλ" "λ")))
   (setq neo-vc-integration '(face))
+
+  (reverse-input-method 'russian-computer)
 
   ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
   ;; TODO create issue
