@@ -7,8 +7,9 @@ My drawer with spacemacs settings, scripts, notes and history of updating.
 - install fonts `M-x all-the-icons-install-fonts`
 - added hook in `user-conifg` for sustaining state of variables `neo-vs-integration` (maybe it'll redundant in future)
 
-## TODO
+## TODOs
 
+- [ ] try develop branch
 - [ ] setting up haskell layer
 - [ ] review setting up GPG key
 - [ ] research about emacs server

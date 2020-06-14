@@ -60,7 +60,11 @@ values."
      yaml
      c-c++
      coq
-     latex
+     (latex :variables
+            ;; latex-build-command 'LaTeXMk
+            latex-enable-folding t)
+     bibtex
+
      java
      ;; intero
      ;; lsp
@@ -85,6 +89,9 @@ values."
     lsp-haskell
     company-lsp
     lsp-mode
+
+    ;; magic-latex-buffer
+
     ;; lsp-ui TODO
     ;; org-ql [https://github.com/alphapapa/org-ql]
   ;;  structured-haskell-mode
@@ -340,8 +347,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'coq-mode-hook 'column-enforce-mode)
   (setq-default dotspacemacs-configuration-layers
     '(syntax-checking :variables syntax-checking-enable-by-default nil))
-  (add-hook 'latex-mode-hook (lambda () (set-fill-column 115))) ;; github line wrap
-  (add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 115)))
+  (add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 103))) ;; half monitor width
+  (add-hook 'LaTeX-mode-hook (lambda () (TeX-engine-set "xetex")))
+  ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
+
+  (add-hook 'bibtex-mode-hook (lambda () (set-fill-column 100)))
   )
 
 (defun dotspacemacs/user-config ()
@@ -366,6 +376,7 @@ you should place your code here."
 
   (reverse-input-method 'russian-computer)
 
+
   ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
   ;; TODO create issue
   ;;(setq lsp-haskell-process-path-hie "hie-wrapper")
@@ -384,11 +395,39 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(TeX-command-BibTeX "BibTeX")
+ '(TeX-view-program-list
+   (quote
+    (("Okular"
+      ("okular --noraise --unique %o"
+       (mode-io-correlate "#src:%n%a"))
+      "okular"))))
+ '(TeX-view-program-selection
+   (quote
+    (((output-dvi has-no-display-manager)
+      "dvi2tty")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "Okular")
+     (output-html "xdg-open"))))
+ '(bibtex-align-at-equal-sign t)
+ '(bibtex-entry-format
+   (quote
+    (opts-or-alts required-fields numerical-fields realign unify-case sort-fields)))
+ '(bibtex-generate-url-list
+   (quote
+    ((("url" . ".*:.*"))
+     (("doi" . "10\\.[0-9]+/.+")
+      "http://dx.doi.org/%s"
+      ("doi" ".*" 0))
+     (("pdf" . ".*:.*")))))
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-pos-tip-timeout 20)
  '(flycheck-python-flake8-executable "python3")
  '(flycheck-python-pycompile-executable "python3")
  '(flycheck-python-pylint-executable "python3")
+ '(global-hl-todo-mode t)
  '(haskell-font-lock-symbols t)
  '(helm-completion-style (quote emacs))
  '(hindent-style nil)
@@ -461,8 +500,9 @@ you should place your code here."
     ("/usr/share/emacs/26.2/site-lisp/elpa" "/usr/share/emacs/site-lisp/elpa")))
  '(package-selected-packages
    (quote
-    (company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (org-ref pdf-tools key-chord ivy tablist helm-bibtex bibtex-completion parsebib biblio biblio-core company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(python-shell-interpreter "python" t)
+ '(tex-bibtex-command "biber")
  '(tooltip-hide-delay 20)
  '(word-wrap t))
 (custom-set-faces
