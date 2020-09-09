@@ -317,7 +317,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -458,7 +458,9 @@ you should place your code here."
      ("WAIT" . "#00bfff")
      ("BUG" . "red2")
      ("CHECK" . "#cdcd00")
-     ("FEATURE" . "wheat"))))
+     ("FEATURE" . "wheat")
+     ("DEBUG" . "grey"))))
+ '(initial-buffer-choice (lambda () (get-buffer-create "*spacemacs*")))
  '(lsp-log-io t)
  '(neo-auto-indent-point t t)
  '(neo-banner-message "Press ? for neotree help" t)
@@ -481,6 +483,7 @@ you should place your code here."
                  ("begin" "$1" "$" "$$" "\\(" "\\["))))
  '(org-lowest-priority 68)
  '(org-priority-faces (quote ((65 . "red") (66 . "orange") (67 . "cyan"))))
+ '(org-return-follows-link t)
  '(org-startup-truncated nil)
  '(org-todo-keyword-faces
    (quote
