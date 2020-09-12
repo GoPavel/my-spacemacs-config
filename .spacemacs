@@ -367,6 +367,8 @@ you should place your code here."
   (defconst lisp--prettify-symbols-alist
     '(("lambda"  . ?λ)))
 
+  ;; TODO: Bug in master
+  ;; (setq initial-buffer-choice (lambda () (get-buffer-create spacemacs-buffer-name)))
 
   (global-prettify-symbols-mode +1)
   (use-package org-fancy-priorities
@@ -378,7 +380,6 @@ you should place your code here."
   (setq neo-vc-integration '(face))
 
   (reverse-input-method 'russian-computer)
-
 
   ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
   ;; TODO create issue
@@ -460,7 +461,6 @@ you should place your code here."
      ("CHECK" . "#cdcd00")
      ("FEATURE" . "wheat")
      ("DEBUG" . "grey"))))
- '(initial-buffer-choice (lambda () (get-buffer-create "*spacemacs*")))
  '(lsp-log-io t)
  '(neo-auto-indent-point t t)
  '(neo-banner-message "Press ? for neotree help" t)

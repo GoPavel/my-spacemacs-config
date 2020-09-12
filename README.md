@@ -9,11 +9,12 @@ My drawer with spacemacs settings, scripts, notes and history of updating.
 
 ## TODOs
 
-- [ ] try develop branch
+- [X] try develop branch
 - [ ] setting up haskell layer
 - [ ] review setting up GPG key
 - [ ] research about emacs server
 - [X] fix rewrite `neo-vs-integration` [issue](https://github.com/syl20bnr/spacemacs/issues/10504)
+- [ ] switch to `develop` brach
 
 ## Emacs-server
     - set `dotspacemacs-persistent-server` to `t` (maybe redundant) 
@@ -21,4 +22,4 @@ My drawer with spacemacs settings, scripts, notes and history of updating.
     - `systemctl --user start emacs`
     - add to .zshrc `alias em="emacsclient --tty"`
     - add `emacsclient --create-frame %f` to `/usr/share/application/emacs.desktop`
-    - setup initical-choice-buffer
+    - setup initical-choice-buffer (TODO: doesn't work in `master`)
