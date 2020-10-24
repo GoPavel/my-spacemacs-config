@@ -15,11 +15,17 @@ My drawer with spacemacs settings, scripts, notes and history of updating.
 - [ ] research about emacs server
 - [X] fix rewrite `neo-vs-integration` [issue](https://github.com/syl20bnr/spacemacs/issues/10504)
 - [ ] switch to `develop` brach
+- [ ] uniqueness of neotree in emacs-server
 
 ## Emacs-server
-    - set `dotspacemacs-persistent-server` to `t` (maybe redundant) 
+    - (not recommended) set `dotspacemacs-persistent-server` to `t` (maybe redundant) 
     - `systemctl --user enable emacs`
     - `systemctl --user start emacs`
     - add to .zshrc `alias em="emacsclient --tty"`
-    - add `emacsclient --create-frame %f` to `/usr/share/application/emacs.desktop`
-    - setup initical-choice-buffer (TODO: doesn't work in `master`)
+    - (not recommended) add `emacsclient --create-frame %f` to `/usr/share/application/emacs.desktop`
+    - setup initial-choice-buffer (TODO: doesn't work in `master`)
+### Pros and Cons
+  - (+) Fast opening 
+  - (-) Problem with neotree, coq-mode
+  - (-) Sole and persistent batch of buffers isn't convenient since it becomes necessary to close buffers manually
+  - (-) Accidentally closed server must be reopen by =systemctl=
