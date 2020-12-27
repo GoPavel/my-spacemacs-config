@@ -14,7 +14,7 @@ My drawer with spacemacs settings, scripts, notes and history of updating.
 - [ ] review setting up GPG key
 - [ ] research about emacs server
 - [X] fix rewrite `neo-vs-integration` [issue](https://github.com/syl20bnr/spacemacs/issues/10504)
-- [ ] switch to `develop` brach
+- [X] switch to `develop` brach
 - [ ] uniqueness of neotree in emacs-server
 
 ## Emacs-server
