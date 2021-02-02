@@ -377,6 +377,8 @@ you should place your code here."
 
   ;; TODO: Bug in master
   ;; (setq initial-buffer-choice (lambda () (get-buffer-create spacemacs-buffer-name)))
+  (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
+
 
   (global-prettify-symbols-mode +1)
   (use-package org-fancy-priorities
@@ -577,7 +579,10 @@ This function is called at the very end of Spacemacs initialization."
  '(flycheck-python-pylint-executable "python3")
  '(global-hl-todo-mode t)
  '(haskell-font-lock-symbols t)
+ '(helm-ag-base-command "rg --vimgrep --no-heading --smart-case")
  '(helm-completion-style (quote emacs))
+ '(helm-grep-ag-command
+   "rg --color=always --smart-case --no-heading --line-number %s %s %s")
  '(hindent-style nil)
  '(hl-todo-keyword-faces
    (quote
