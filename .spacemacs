@@ -102,6 +102,7 @@ values."
     ;; org-ql [https://github.com/alphapapa/org-ql]
     ;;  structured-haskell-mode
 
+    dashboard
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -375,10 +376,13 @@ you should place your code here."
   (defconst lisp--prettify-symbols-alist
     '(("lambda"  . ?λ)))
 
-  ;; TODO: Bug in master
-  ;; (setq initial-buffer-choice (lambda () (get-buffer-create spacemacs-buffer-name)))
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
 
+  (require 'dashboard)
+  ;; (kill-buffer "*spacemacs*")
+  (dashboard-setup-startup-hook)
+  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  (dashboard-refresh-buffer)
 
   (global-prettify-symbols-mode +1)
   (use-package org-fancy-priorities
@@ -572,6 +576,9 @@ This function is called at the very end of Spacemacs initialization."
       "http://dx.doi.org/%s"
       ("doi" ".*" 0))
      (("pdf" . ".*:.*")))))
+ '(dashboard-items (quote ((recents . 10) (bookmarks . 10))))
+ '(dashboard-startup-banner (quote logo))
+ '(dashboard-week-agenda nil)
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-pos-tip-timeout 20)
  '(flycheck-python-flake8-executable "python3")
