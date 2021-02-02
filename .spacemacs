@@ -66,9 +66,14 @@ values."
             latex-enable-folding t)
      bibtex
 
+     php
+     csv
+     
      java
      ;; intero
-     ;; lsp
+
+
+     lsp
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-process-type 'stack-ghci
@@ -94,9 +99,9 @@ values."
     ;; magic-latex-buffer
     ssh-agency
 
-    ;; lsp-ui TODO
     ;; org-ql [https://github.com/alphapapa/org-ql]
-  ;;  structured-haskell-mode
+    ;;  structured-haskell-mode
+
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -384,6 +389,8 @@ you should place your code here."
 
   (reverse-input-method 'russian-computer)
 
+  (add-hook 'ocaml-mode-hook #'lsp)
+
   ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
   ;; TODO create issue
   ;;(setq lsp-haskell-process-path-hie "hie-wrapper")
@@ -598,6 +605,7 @@ This function is called at the very end of Spacemacs initialization."
      ("FEATURE" . "wheat")
      ("DEBUG" . "grey")
      ("WAIT" . "deep sky blue"))))
+ '(lsp-keymap-prefix "SPC")
  '(lsp-log-io t)
  '(neo-auto-indent-point t)
  '(neo-banner-message "Press ? for neotree help")
