@@ -31,8 +31,7 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     ;; ----------------------------------------------------------------
+   '(;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
@@ -68,7 +67,7 @@ values."
 
      php
      csv
-     
+
      java
      ;; intero
 
@@ -382,7 +381,7 @@ you should place your code here."
   ;; (kill-buffer "*spacemacs*")
   (dashboard-setup-startup-hook)
   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (dashboard-refresh-buffer)
+  (switch-to-buffer dashboard-buffer-name)
 
   (global-prettify-symbols-mode +1)
   (use-package org-fancy-priorities
@@ -395,7 +394,9 @@ you should place your code here."
 
   (reverse-input-method 'russian-computer)
 
-  (add-hook 'ocaml-mode-hook #'lsp)
+  ;; (add-hook 'ocaml-mode-hook #'lsp)
+  (add-hook 'tuareg-mode-hook 'tuareg-opam-update-env)
+  (add-hook 'tuareg-mode-hook #'lsp)
 
   ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
   ;; TODO create issue
@@ -577,6 +578,8 @@ This function is called at the very end of Spacemacs initialization."
       ("doi" ".*" 0))
      (("pdf" . ".*:.*")))))
  '(dashboard-items (quote ((recents . 10) (bookmarks . 10))))
+ '(dashboard-set-file-icons t)
+ '(dashboard-set-heading-icons nil)
  '(dashboard-startup-banner (quote logo))
  '(dashboard-week-agenda nil)
  '(evil-want-Y-yank-to-eol nil)
@@ -619,7 +622,6 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-client-packages
    (quote
     (ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte)))
- '(lsp-keymap-prefix "SPC")
  '(lsp-log-io t)
  '(neo-auto-indent-point t t)
  '(neo-banner-message "Press ? for neotree help" t)
@@ -681,6 +683,7 @@ This function is called at the very end of Spacemacs initialization."
  '(tex-bibtex-command "biber")
  '(tooltip-hide-delay 20)
  '(tuareg-default-indent 4)
+ '(tuareg-opam-insinuate t)
  '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
