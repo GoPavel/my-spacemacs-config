@@ -556,35 +556,37 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(TeX-command-BibTeX "BibTeX")
  '(TeX-view-program-list
-   (quote
-    (("Okular"
+   '(("Okular"
       ("okular --noraise --unique %o"
        (mode-io-correlate "#src:%n%a"))
-      "okular"))))
+      "okular")))
  '(TeX-view-program-selection
-   (quote
-    (((output-dvi has-no-display-manager)
+   '(((output-dvi has-no-display-manager)
       "dvi2tty")
      ((output-dvi style-pstricks)
       "dvips and gv")
      (output-dvi "xdvi")
      (output-pdf "Okular")
-     (output-html "xdg-open"))))
+     (output-html "xdg-open")))
  '(bibtex-align-at-equal-sign t)
  '(bibtex-entry-format
-   (quote
-    (opts-or-alts required-fields numerical-fields realign unify-case sort-fields)))
+   '(opts-or-alts required-fields numerical-fields realign unify-case sort-fields))
  '(bibtex-generate-url-list
-   (quote
-    ((("url" . ".*:.*"))
+   '((("url" . ".*:.*"))
      (("doi" . "10\\.[0-9]+/.+")
       "http://dx.doi.org/%s"
       ("doi" ".*" 0))
-     (("pdf" . ".*:.*")))))
- '(dashboard-items (quote ((recents . 10) (bookmarks . 10))))
+     (("pdf" . ".*:.*"))))
+ '(dashboard-item-generators
+   '((recents . dashboard-insert-recents)
+     (bookmarks . dashboard-insert-bookmarks)
+     (projects . dashboard-insert-projects)
+     (agenda . dashboard-insert-agenda)
+     (registers . dashboard-insert-registers)))
+ '(dashboard-items '((recents . 10) (bookmarks . 10)))
  '(dashboard-set-file-icons t)
  '(dashboard-set-heading-icons nil)
- '(dashboard-startup-banner (quote logo))
+ '(dashboard-startup-banner 'logo)
  '(dashboard-week-agenda nil)
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-pos-tip-timeout 20)
@@ -594,13 +596,12 @@ This function is called at the very end of Spacemacs initialization."
  '(global-hl-todo-mode t)
  '(haskell-font-lock-symbols t)
  '(helm-ag-base-command "rg --vimgrep --no-heading --smart-case")
- '(helm-completion-style (quote emacs))
+ '(helm-completion-style 'emacs)
  '(helm-grep-ag-command
    "rg --color=always --smart-case --no-heading --line-number %s %s %s")
  '(hindent-style nil)
  '(hl-todo-keyword-faces
-   (quote
-    (("REVIEW" . "#7cb8bb")
+   '(("REVIEW" . "#7cb8bb")
      ("HOLD" . "#d0bf8f")
      ("TODO" . "#cc9393")
      ("NEXT" . "#dca3a3")
@@ -622,43 +623,41 @@ This function is called at the very end of Spacemacs initialization."
      ("BUG" . "red2")
      ("CHECK" . "#cdcd00")
      ("FEATURE" . "wheat")
-     ("DEBUG" . "grey"))))
+     ("DEBUG" . "grey")))
  '(lsp-client-packages
-   (quote
-    (ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte)))
+   '(ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte))
  '(lsp-log-io t)
  '(neo-auto-indent-point t t)
  '(neo-banner-message "Press ? for neotree help" t)
  '(neo-create-file-auto-open t t)
  '(neo-hidden-regexp-list
-   (quote
-    ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$")))
+   '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$"))
  '(neo-show-hidden-files t t)
  '(neo-show-updir-line nil t)
  '(neo-smart-open t t)
- '(neo-theme (quote icons))
- '(neo-vc-integration (quote (face)) t)
+ '(neo-theme 'icons)
+ '(neo-vc-integration '(face) t)
  '(neo-window-width 28 t)
- '(org-agenda-files (quote ("CENSORED_PATH")))
+ '(org-agenda-files
+   '("CENSORED_PATH" "CENSORED_PATH"))
+ '(org-columns-default-format "%25ITEM %TODO %3PRIORITY %6Effort %TAGS")
  '(org-file-apps
-   (quote
-    ((auto-mode . emacs)
+   '((auto-mode . emacs)
      (directory . emacs)
      ("\\.mm\\'" . default)
      ("\\.x?html?\\'" . default)
-     ("\\.pdf\\'" . "okular %s"))))
+     ("\\.pdf\\'" . "okular %s")))
  '(org-format-latex-options
-   (quote
-    (:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-                 ("begin" "$1" "$" "$$" "\\(" "\\["))))
+   '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+                 ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-lowest-priority 68)
- '(org-priority-faces (quote ((65 . "red") (66 . "orange") (67 . "cyan"))))
+ '(org-priority-faces '((65 . "red") (66 . "orange") (67 . "cyan")))
  '(org-priority-lowest 68)
  '(org-return-follows-link t)
  '(org-startup-truncated nil)
+ '(org-super-agenda-groups nil)
  '(org-todo-keyword-faces
-   (quote
-    (("DRAFT" . "#7d3c98")
+   '(("DRAFT" . "#7d3c98")
      ("WORK" . "#ec7063")
      ("CLEAR" . "green")
      ("OPEN" . "#f1c40f")
@@ -670,20 +669,17 @@ This function is called at the very end of Spacemacs initialization."
      ("WAIT" . "#00bfff")
      ("ACTIVE" . "red1")
      ("REGULAR" . "yellow1")
-     ("MAYBE" . "orchid"))))
+     ("MAYBE" . "orchid")))
  '(package-archives
-   (quote
-    (("melpa" . "https://melpa.org/packages/")
+   '(("melpa" . "https://melpa.org/packages/")
      ("org" . "https://orgmode.org/elpa/")
-     ("gnu" . "https://elpa.gnu.org/packages/"))))
+     ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-check-signature nil)
  '(package-directory-list
-   (quote
-    ("/usr/share/emacs/26.2/site-lisp/elpa" "/usr/share/emacs/site-lisp/elpa")))
+   '("/usr/share/emacs/26.2/site-lisp/elpa" "/usr/share/emacs/site-lisp/elpa"))
  '(package-selected-packages
-   (quote
-    (dashboard lsp-ui helm-lsp phpunit phpcbf php-extras php-auto-yasnippets helm-gtags ggtags drupal-mode counsel-gtags counsel swiper company-php ac-php-core xcscope php-mode ssh-agency web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode org-ref pdf-tools key-chord ivy tablist helm-bibtex bibtex-completion parsebib biblio biblio-core company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
- '(python-shell-interpreter "python")
+   '(lean-mode helm-gtags ggtags counsel-gtags counsel swiper company-lua lua-mode ssh-agency web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode org-ref pdf-tools key-chord ivy tablist helm-bibtex bibtex-completion parsebib biblio biblio-core company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+ '(python-shell-interpreter "python" t)
  '(tex-bibtex-command "biber")
  '(tooltip-hide-delay 20)
  '(tuareg-default-indent 4)
