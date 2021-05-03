@@ -390,7 +390,10 @@ you should place your code here."
     :hook
     (org-mode . org-fancy-priorities-mode)
     :config
-    (setq org-fancy-priorities-list '("λλλ" "λλ" "λ")))
+    ;;(setq org-fancy-priorities-list '("λ" "λ" "λ"))
+    ;;(setq org-fancy-priorities-list '("λλλ" "λλ" "λ"))
+    (setq org-fancy-priorities-list '("∰" "∯" "∮"))
+    )
   (setq neo-vc-integration '(face))
 
   (reverse-input-method 'russian-computer)
