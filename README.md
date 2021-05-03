@@ -7,6 +7,11 @@ My drawer with spacemacs settings, scripts, notes and history of updating.
 - install fonts `M-x all-the-icons-install-fonts`
 - added hook in `user-conifg` for sustaining state of variables `neo-vs-integration` (maybe it'll redundant in future)
 
+## Layers
+
+### Lean
+  - [Follow install instruction from REAME](https://github.com/robkorn/spacemacs-lean-layer)
+
 ## TODOs
 
 - [X] try develop branch
