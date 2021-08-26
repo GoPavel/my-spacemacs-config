@@ -59,7 +59,7 @@ values."
      octave
      yaml
      c-c++
-     coq
+     rust
      (latex :variables
             ;; latex-build-command 'LaTeXMk
             latex-enable-folding t)
@@ -81,6 +81,8 @@ values."
      ;; TODO better-defaults
 
      lean
+     fstar
+     coq
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -103,6 +105,9 @@ values."
     ;;  structured-haskell-mode
 
     dashboard
+
+    org-pomodoro ;; to structure your time
+    pomidor      ;; to softly keep work/rest balance
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -405,7 +410,8 @@ you should place your code here."
   ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
   ;; TODO create issue
   ;;(setq lsp-haskell-process-path-hie "hie-wrapper")
-  ;;(require 'lsp-mode)
+
+  ;; (require 'lsp-mode)
   ;;(require 'lsp-haskell)
   ;;(add-hook 'haskell-mode-hook #'lsp)
 
@@ -577,17 +583,26 @@ This function is called at the very end of Spacemacs initialization."
       "http://dx.doi.org/%s"
       ("doi" ".*" 0))
      (("pdf" . ".*:.*"))))
+ '(dashboard-footer-messages
+   '("The one true editor, Emacs!" "Who the hell uses VIM anyway? Go Evil!" "Free as free speech, free as free Beer" "Richard Stallman is proud of you" "Happy coding!" "Vi Vi Vi, the editor of the beast" "Welcome to the church of Emacs" "While any text editor can save your files, only Emacs can save your soul" "I showed you my source code, pls respond"))
+ '(dashboard-heading-icons
+   '((recents . "history")
+     (bookmarks . "bookmark")
+     (agenda . "calendar")
+     (projects . "rocket")
+     (registers . "database")))
  '(dashboard-item-generators
    '((recents . dashboard-insert-recents)
      (bookmarks . dashboard-insert-bookmarks)
      (projects . dashboard-insert-projects)
      (agenda . dashboard-insert-agenda)
      (registers . dashboard-insert-registers)))
- '(dashboard-items '((recents . 10) (bookmarks . 10)))
+ '(dashboard-items '((recents . 3) (bookmarks . 17)))
  '(dashboard-set-file-icons t)
- '(dashboard-set-heading-icons nil)
+ '(dashboard-set-heading-icons t)
  '(dashboard-startup-banner 'logo)
  '(dashboard-week-agenda nil)
+ '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-pos-tip-timeout 20)
  '(flycheck-python-flake8-executable "python3")
@@ -640,7 +655,8 @@ This function is called at the very end of Spacemacs initialization."
  '(neo-window-width 28 t)
  '(org-agenda-files
    '("CENSORED_PATH" "CENSORED_PATH"))
- '(org-columns-default-format "%25ITEM %TODO %3PRIORITY %6Effort %TAGS")
+ '(org-columns-default-format "%25ITEM %TODO %6Effort %6CLOCKSUM %TAGS")
+ '(org-export-date-timestamp-format nil)
  '(org-file-apps
    '((auto-mode . emacs)
      (directory . emacs)
@@ -651,6 +667,7 @@ This function is called at the very end of Spacemacs initialization."
    '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
                  ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-lowest-priority 68)
+ '(org-pomodoro-length 25)
  '(org-priority-faces '((65 . "red") (66 . "orange") (67 . "cyan")))
  '(org-priority-lowest 68)
  '(org-return-follows-link t)
@@ -678,8 +695,13 @@ This function is called at the very end of Spacemacs initialization."
  '(package-directory-list
    '("/usr/share/emacs/26.2/site-lisp/elpa" "/usr/share/emacs/site-lisp/elpa"))
  '(package-selected-packages
-   '(lean-mode helm-gtags ggtags counsel-gtags counsel swiper company-lua lua-mode ssh-agency web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode org-ref pdf-tools key-chord ivy tablist helm-bibtex bibtex-completion parsebib biblio biblio-core company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+   '(hybrid-mode cpp-auto-include quelpa org-clock-csv pomidor pomodoro lean-mode helm-gtags ggtags counsel-gtags counsel swiper company-lua lua-mode ssh-agency web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode org-ref pdf-tools key-chord ivy tablist helm-bibtex bibtex-completion parsebib biblio biblio-core company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+ '(pomidor-break-seconds 300)
+ '(pomidor-seconds 1500)
+ '(pomidor-sound-tack "nil")
+ '(pomidor-sound-tick "nil")
  '(python-shell-interpreter "python" t)
+ '(tab-bar-mode t)
  '(tex-bibtex-command "biber")
  '(tooltip-hide-delay 20)
  '(tuareg-default-indent 4)
