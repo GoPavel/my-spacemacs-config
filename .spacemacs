@@ -107,6 +107,8 @@ values."
 
     dashboard
 
+    pinentry
+
     org-pomodoro ;; to structure your time
     pomidor      ;; to softly keep work/rest balance
     )
@@ -386,6 +388,8 @@ you should place your code here."
   (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
+
+  (pinentry-start)
 
   (require 'dashboard)
   ;; (kill-buffer "*spacemacs*")
