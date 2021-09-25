@@ -589,7 +589,12 @@ This function is called at the very end of Spacemacs initialization."
       ("doi" ".*" 0))
      (("pdf" . ".*:.*"))))
  '(dashboard-footer-messages
-   '("The one true editor, Emacs!" "Who the hell uses VIM anyway? Go Evil!" "Free as free speech, free as free Beer" "Richard Stallman is proud of you" "Happy coding!" "Vi Vi Vi, the editor of the beast" "Welcome to the church of Emacs" "While any text editor can save your files, only Emacs can save your soul" "I showed you my source code, pls respond"))
+   (with-temp-buffer
+     (insert-file-contents "CENSORED_PATH")
+     (split-string
+      (buffer-string)
+      "
+" t)))
  '(dashboard-heading-icons
    '((recents . "history")
      (bookmarks . "bookmark")
@@ -602,7 +607,7 @@ This function is called at the very end of Spacemacs initialization."
      (projects . dashboard-insert-projects)
      (agenda . dashboard-insert-agenda)
      (registers . dashboard-insert-registers)))
- '(dashboard-items '((recents . 3) (bookmarks . 17)))
+ '(dashboard-items '((recents . 3) (bookmarks . 17) (projects . 3)))
  '(dashboard-set-file-icons t)
  '(dashboard-set-heading-icons t)
  '(dashboard-startup-banner 'logo)
