@@ -67,6 +67,7 @@ values."
      php
      csv
      lua
+     typescript
      json
      java
      ;; intero
