@@ -381,6 +381,9 @@ you should place your code here."
   (defconst lisp--prettify-symbols-alist
     '(("lambda"  . ?λ)))
 
+  ;; enable unicode emoji
+  (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
+
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
 
   (require 'dashboard)
@@ -417,6 +420,8 @@ you should place your code here."
 
   ;;(require 'company-lsp)
   ;;(push 'company-lsp company-backends)
+  (add-hook 'tuareg-mode-hook (lambda() (setq mode-name "🐪")))
+  (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
