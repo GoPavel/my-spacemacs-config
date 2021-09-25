@@ -14,13 +14,17 @@ My drawer with spacemacs settings, scripts, notes and history of updating.
 
 ## TODOs
 
-- [X] try develop branch
-- [ ] setting up haskell layer
-- [ ] review setting up GPG key
-- [ ] research about emacs server
-- [X] fix rewrite `neo-vs-integration` [issue](https://github.com/syl20bnr/spacemacs/issues/10504)
-- [X] switch to `develop` brach
-- [ ] uniqueness of neotree in emacs-server
+### General
+  - [ ] Add shortcut for neotree
+  - [ ] setting up haskell layer
+  - [ ] review setting up GPG key
+    - add `pinentry-start`
+  - [X] fix rewrite `neo-vs-integration` [issue](https://github.com/syl20bnr/spacemacs/issues/10504)
+  - [ ] ~~uniqueness of neotree in emacs-server~~
+
+### Ocaml
+  - [ ] add hook for `tuareg-update && restart-lsp-server`
+
 
 ## Emacs-server
     - (not recommended) set `dotspacemacs-persistent-server` to `t` (maybe redundant) 
