@@ -89,8 +89,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '
-   (
+   dotspacemacs-additional-packages '(
+    (org-super-links :location (recipe :fetcher github :repo "toshism/org-super-links" :commit "develop"))
+    ;; org-super-links
     cdlatex
     org-fancy-priorities
     all-the-icons
@@ -407,6 +408,13 @@ you should place your code here."
     ;;(setq org-fancy-priorities-list '("λλλ" "λλ" "λ"))
     (setq org-fancy-priorities-list '("∰" "∯" "∮"))
     )
+  (require 'org-id) ;; for automatic ID
+  (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+  (use-package org-super-links
+    :bind (("C-c s s" . org-super-links-link)
+	         ("C-c s l" . org-super-links-store-link)
+	         ("C-c s i" . org-super-links-insert-link)))
+
   (setq neo-vc-integration '(face))
 
   (reverse-input-method 'russian-computer)

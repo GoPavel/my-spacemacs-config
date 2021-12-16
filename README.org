@@ -1,0 +1,9 @@
+* Cheat sheet
+** Org-mode
+*** Sparse trees
+    - =C-c \= or =C-c /= tag to show heading with specific tag
+    - =org-show-context-detail= allows customize how many will be shown for each heading
+*** Super-links
+    - =C-c s l= store link
+    - =C-c s i= insert link
+    - =C-c s s= search heading for link
