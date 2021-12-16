@@ -683,8 +683,20 @@ This function is called at the very end of Spacemacs initialization."
  '(neo-theme 'icons)
  '(neo-vc-integration '(face) t)
  '(neo-window-width 28 t)
+ '(org-agenda-category-icon-alist
+   '(("serokell" "~/.emacs.d/private/icons/serokell.png" nil nil :ascent center)
+     ("task" "~/.emacs.d/private/icons/checked.png" nil nil :ascent center)
+     ("science" "~/.emacs.d/private/icons/science.png" nil nil :ascent center)))
+ '(org-agenda-current-time-string "ᐊ---------------")
  '(org-agenda-files
-   '("CENSORED_PATH" "CENSORED_PATH"))
+   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
+ '(org-agenda-prefix-format
+   '((agenda . " %-3i %-12:c%?-12t% s")
+     (todo . " %i %-12:c")
+     (tags . " %i %-12:c")
+     (search . " %i %-12:c")))
+ '(org-agenda-start-with-log-mode '(closed))
+ '(org-archive-location "::* Archive")
  '(org-columns-default-format "%25ITEM %TODO %6Effort %6CLOCKSUM %TAGS")
  '(org-export-date-timestamp-format nil)
  '(org-file-apps
@@ -706,8 +718,20 @@ This function is called at the very end of Spacemacs initialization."
  '(org-priority-faces '((65 . "red") (66 . "orange") (67 . "cyan")))
  '(org-priority-lowest 68)
  '(org-return-follows-link t)
+ '(org-show-context-detail
+   '((agenda . local)
+     (bookmark-jump . lineage)
+     (isearch . lineage)
+     (default . ancestors)
+     (tags-tree . local)))
  '(org-startup-truncated nil)
  '(org-super-agenda-groups nil)
+ '(org-tag-faces
+   '(("grammar" . "magenta3")
+     ("listening" . "green4")
+     ("reading" . "firebrick")
+     ("vocab" . "DodgerBlue3")
+     ("arzamas" . "Gray")))
  '(org-todo-keyword-faces
    '(("DRAFT" . "#7d3c98")
      ("WORK" . "#ec7063")
