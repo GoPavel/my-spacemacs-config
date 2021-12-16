@@ -676,7 +676,7 @@ This function is called at the very end of Spacemacs initialization."
  '(neo-banner-message "Press ? for neotree help" t)
  '(neo-create-file-auto-open t t)
  '(neo-hidden-regexp-list
-   '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$"))
+   '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$"))
  '(neo-show-hidden-files t t)
  '(neo-show-updir-line nil t)
  '(neo-smart-open t t)
