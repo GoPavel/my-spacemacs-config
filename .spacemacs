@@ -112,6 +112,8 @@ values."
 
     org-pomodoro ;; to structure your time
     pomidor      ;; to softly keep work/rest balance
+
+    org-gcal ;; sync org-mode with gcalendar
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -392,6 +394,10 @@ you should place your code here."
 
   (pinentry-start)
 
+  (require 'org-gcal) ;; TODO: try to replace with use-package
+  (setq org-gcal-client-id "CENSORED_CONTENT"
+        org-gcal-client-secret "CENSORED_CONTENT")
+
   (require 'dashboard)
   ;; (kill-buffer "*spacemacs*")
   (dashboard-setup-startup-hook)
@@ -545,8 +551,8 @@ you should place your code here."
  '(package-archives
    (quote
     (("melpa" . "https://melpa.org/packages/")
+     ("melpa-stable" . "https://stable.melpa.org/packages/")
      ("org" . "https://orgmode.org/elpa/")
-     ("gnu" . "https://elpa.gnu.org/packages/"))))
  '(package-check-signature nil)
  '(package-directory-list
    (quote
@@ -689,6 +695,11 @@ This function is called at the very end of Spacemacs initialization."
  '(org-format-latex-options
    '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
                  ("begin" "$1" "$" "$$" "\\(" "\\[")))
+ '(org-gcal-fetch-file-alist
+   '(("pavel.golovin@serokell.io" . "CENSORED_PATH")
+
+     ("gopavel0@gmail.com" . "CENSORED_PATH")))
+ '(org-gcal-recurring-events-mode 'top-level)
  '(org-lowest-priority 68)
  '(org-pomodoro-length 25)
  '(org-priority-faces '((65 . "red") (66 . "orange") (67 . "cyan")))

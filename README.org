@@ -7,3 +7,6 @@
     - =C-c s l= store link
     - =C-c s i= insert link
     - =C-c s s= search heading for link
+*** Syncing with google calendar
+    - =org-gcal-request-new-token=
+    - =org-gcal-fetch=
