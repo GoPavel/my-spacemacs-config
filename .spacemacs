@@ -70,6 +70,8 @@ values."
      typescript
      json
      java
+     (elm :variables
+          company-idle-delay nil)
      ;; intero
 
      lsp
@@ -428,6 +430,7 @@ you should place your code here."
   ;; (add-hook 'ocaml-mode-hook #'lsp)
   (add-hook 'tuareg-mode-hook 'tuareg-opam-update-env)
   (add-hook 'tuareg-mode-hook #'lsp)
+  (add-hook 'elm-mode-hook #'lsp)
 
   ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
   ;; TODO create issue
