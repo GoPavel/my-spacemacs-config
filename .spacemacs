@@ -442,9 +442,15 @@ you should place your code here."
 
   ;;(require 'company-lsp)
   ;;(push 'company-lsp company-backends)
+
+  ;; (add-hook 'intero-mode-hook 'column-enforce-mode)
+
+  (add-hook 'tuareg-mode-hook 'column-enforce-mode)
   (add-hook 'tuareg-mode-hook (lambda() (setq mode-name "🐪")))
   (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
+  (add-hook 'tuareg-mode-hook (lambda() (electric-indent-mode 0)))
 )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
