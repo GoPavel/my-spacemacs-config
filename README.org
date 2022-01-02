@@ -1,12 +1,56 @@
-* Cheat sheet
-** Org-mode
-*** Sparse trees
-    - =C-c \= or =C-c /= tag to show heading with specific tag
-    - =org-show-context-detail= allows customize how many will be shown for each heading
-*** Super-links
-    - =C-c s l= store link
-    - =C-c s i= insert link
-    - =C-c s s= search heading for link
-*** Syncing with google calendar
-    - =org-gcal-request-new-token=
-    - =org-gcal-fetch=
+* Spacemacs-settings
+  
+  A drawer with my spacemacs configuration: cheat sheets, notes, todos and so on.
+
+** Table of content
+   - TODOs
+   - Cheat sheet
+   - Setup hints
+** TODOs
+*** General
+  - [ ] setting up haskell layer
+  - [ ] review setting up GPG key
+    - add =pinentry-start=
+  - [X] fix rewrite =neo-vc-integration= ([[https://github.com/syl20bnr/spacemacs/issues/10504][issue]])
+  - [ ] add hook for =tuareg-update && restart-lsp-server=
+
+** Cheat sheet
+*** Org-mode
+**** Sparse trees
+     - =C-c \= or =C-c /= tag to show heading with specific tag
+     - =org-show-context-detail= allows customize how many will be shown for each heading
+**** Super-links
+     - =C-c s l= store link
+     - =C-c s i= insert link
+     - =C-c s s= search heading for link
+**** Syncing with google calendar
+     - =org-gcal-request-new-token=
+     - =org-gcal-fetch=
+**** Distraction free mode ([[https://orgmode.org/manual/Structure-Editing.html][link]])
+     - =org-narrow-to-*=
+     - =C-x n s= narrow to subtree
+**** Creating timestamp ([[https://orgmode.org/manual/Creating-Timestamps.html][link]])
+     - =C-c .= insert timestamp
+     - =C-c C-c= normalize timestamp
+     - =S-UP/DOWN= shift a part of the timestamp under cursor
+
+** Setup hints
+*** Emacs server
+    - =systemctl --user enable emacs=
+    - =systemctl --user start emacs=
+    - add to =.zshrc= alias ~es="emacsclient --tty"~
+    - (optional) add =emacsclient --create-frame %f= to =/usr/share/application/emacs.desktop=
+      I don't do that because some packages cannot work with multiple clients (neotree, proof-general).
+      Thus in my setup I use emacs server only in the console and open different projects in separated
+      desktop windows. Also open server accumulate too many open buffers that disturb navigation by
+      the =M-m b b= stroke.
+    - setup =initial-choice-buffer= (doesn't work in =master=)
+
+*** Neotree
+    - install fonts =M-x all-the-icons-install-fonts=
+    - added hook in =user-conifg= for sustaining state of variables =neo-vs-integration= (maybe it'll
+      redundant in future)
+*** Layers
+**** Lean
+     - [[https://github.com/robkorn/spacemacs-lean-layer][Follow install instruction from README]]
+
