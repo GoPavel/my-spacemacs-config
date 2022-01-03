@@ -58,6 +58,7 @@ values."
      idris
      octave
      yaml
+     docker
      c-c++
      rust
      (latex :variables
