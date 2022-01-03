@@ -382,6 +382,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'org-mode-hook (lambda () (set-fill-column 103)))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
   ;; (add-hook 'tuareg-mode-hook (lambda () (merlin-xref-backend)))
+
+  (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable)
   )
 
 (defun dotspacemacs/user-config ()
@@ -763,6 +765,7 @@ This function is called at the very end of Spacemacs initialization."
      ("ACTIVE" . "red1")
      ("REGULAR" . "yellow1")
      ("MAYBE" . "orchid")))
+ '(origami-show-fold-header t)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
      ("org" . "https://orgmode.org/elpa/")
