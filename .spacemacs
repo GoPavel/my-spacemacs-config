@@ -365,6 +365,9 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  (setq-default
+   dotspacemacs-scroll-bar-while-scrolling nil)
+
   ;; TODO: move the all to the user-config
 
   (add-hook 'coq-mode-hook 'column-enforce-mode)
