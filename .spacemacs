@@ -711,9 +711,14 @@ This function is called at the very end of Spacemacs initialization."
    '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
  '(org-agenda-prefix-format
    '((agenda . " %-3i %-12:c%?-12t% s")
-     (todo . " %i %-12:c")
-     (tags . " %i %-12:c")
-     (search . " %i %-12:c")))
+     (todo . " %-3i %-12:c")
+     (tags . " %-3i %-12:c")
+     (search . " %-3i %-12:c")))
+ '(org-agenda-sorting-strategy
+   '((agenda habit-down time-up priority-down category-keep)
+     (todo priority-down category-keep alpha-up)
+     (tags priority-down category-keep timestamp-down alpha-up)
+     (search category-keep timestamp-down alpha-up)))
  '(org-agenda-start-with-log-mode '(closed))
  '(org-archive-location "::* Archive")
  '(org-columns-default-format "%25ITEM %TODO %6Effort %6CLOCKSUM %TAGS")
