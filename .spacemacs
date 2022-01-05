@@ -648,6 +648,7 @@ This function is called at the very end of Spacemacs initialization."
       "http://dx.doi.org/%s"
       ("doi" ".*" 0))
      (("pdf" . ".*:.*"))))
+ '(dashboard-center-content t)
  '(dashboard-footer-messages
    (with-temp-buffer
      (insert-file-contents "CENSORED_PATH")
@@ -708,7 +709,8 @@ This function is called at the very end of Spacemacs initialization."
      ("BUG" . "red2")
      ("CHECK" . "#cdcd00")
      ("FEATURE" . "wheat")
-     ("DEBUG" . "grey")))
+     ("DEBUG" . "grey")
+
  '(lsp-client-packages
    '(ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte))
  '(lsp-log-io t)
@@ -730,7 +732,7 @@ This function is called at the very end of Spacemacs initialization."
      ("science" "~/.emacs.d/private/icons/science.png" nil nil :ascent center)))
  '(org-agenda-current-time-string "ᐊ---------------")
  '(org-agenda-files
-   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
+   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
  '(org-agenda-prefix-format
    '((agenda . " %-3i %-12:c%?-12t% s")
      (todo . " %-3i %-12:c")
