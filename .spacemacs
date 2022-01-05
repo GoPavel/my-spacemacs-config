@@ -457,6 +457,28 @@ you should place your code here."
   (add-hook 'tuareg-mode-hook (lambda() (setq mode-name "🐪")))
   (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
   (add-hook 'tuareg-mode-hook (lambda() (electric-indent-mode 0)))
+
+  (defun prompt-org-file (dir-path)
+    `(lambda ()
+       "Prompt file name"
+       (interactive)
+       (let ((name (read-string "Filename: ")))
+         (expand-file-name (format "%s.org" name) ',dir-path))))
+
+  (setq org-capture-templates
+        `(
+          ("t" "Thoughts" plain
+           (file ,(prompt-org-file "CENSORED_PATH"))
+           ,(concat
+             "#+SEQ_TODO: FOG(f) DRAFT(d) OPEN(o!) WORK(w!) CLEAR(c!)\n"
+             "#+SEQ_TODO: NOTE(n)\n"
+             "#+CATEGORY: tho\n"
+             "\n"
+             "* DRAFT %? %^G\n"
+            ))
+          ;; ("todo" "TODO" entry))
+          ))
+  (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
 )
 
 
