@@ -465,6 +465,12 @@ you should place your code here."
        (let ((name (read-string "Filename: ")))
          (expand-file-name (format "%s.org" name) ',dir-path))))
 
+  (defun prompt-link ()
+    "Prompt link"
+    (interactive)
+    (read-string "Link: ")
+  )
+
   (setq org-capture-templates
         `(
           ("t" "Thoughts" plain
@@ -475,9 +481,13 @@ you should place your code here."
              "#+CATEGORY: tho\n"
              "\n"
              "* DRAFT %? %^G\n"
-            ))
-          ;; ("todo" "TODO" entry))
+             ))
+          ("b" "Web bookmark" plain
+           (file "CENSORED_PATH")
+           "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n"
           ))
+        ;; ("todo" "TODO" entry))
+  )
   (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
 )
 
