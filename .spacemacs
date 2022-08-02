@@ -480,12 +480,18 @@ you should place your code here."
              "#+SEQ_TODO: NOTE(n)\n"
              "#+CATEGORY: tho\n"
              "\n"
-             "* DRAFT %? %^G\n"
-             ))
+             "* DRAFT %? %^G\n")
+           )
           ("b" "Web bookmark" plain
            (file "CENSORED_PATH")
-           "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n"
-          ))
+           "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
+          ("s" "Science (web) bookmark" plain
+           (file "CENSORED_PATH")
+           "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
+          ("n" "News bookmark" plain
+           (file "CENSORED_PATH")
+           "* TODO [[%(call-interactively #'prompt-link)][%?]]\n")
+          )
         ;; ("todo" "TODO" entry))
   )
   (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
@@ -803,7 +809,15 @@ This function is called at the very end of Spacemacs initialization."
      ("WAIT" . "#00bfff")
      ("ACTIVE" . "red1")
      ("REGULAR" . "yellow1")
-     ("MAYBE" . "orchid")))
+     ("MAYBE" . "orchid")
+     ("FAIL" . "brown")
+     ("POSTPONED" . "Gold")
+     ("COLLECTION" . "#0098DD")
+     ("INFRA" . "Gold")
+     ("NOTES" . "YellowGreen")
+     ("THINK" . "NavajoWhite")
+     ("EXPLORE" . "MediumPurple")
+     ("RUST" . "Sienna")))
  '(origami-show-fold-header t)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
