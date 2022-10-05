@@ -103,6 +103,9 @@ values."
 
     ;; Fancy stuff
     all-the-icons
+    fira-code-mode
+    ;; (ligature :location (recipe :fetcher github :repo "mickeynp/ligature.el" :commit "master"))
+
     ;; Org-mode stuff
     (org-super-links :location (recipe :fetcher github :repo "toshism/org-super-links" :commit "develop"))
     ;; https://github.com/mickeynp/ligature.el (WAIT emacs 28)
@@ -419,6 +422,11 @@ you should place your code here."
   (dashboard-setup-startup-hook)
   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
   (switch-to-buffer dashboard-buffer-name)
+
+  (use-package fira-code-mode
+    :custom (fira-code-mode-disabled-ligatures '("[]" "x" "-}"))  ; ligatures you don't want
+    :hook prog-mode)                                         ; mode to enable fira-code-mode in
+  (fira-code-mode-set-font)
 
   (global-prettify-symbols-mode +1)
   (use-package org-fancy-priorities
