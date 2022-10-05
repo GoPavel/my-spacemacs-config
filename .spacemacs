@@ -729,6 +729,7 @@ This function is called at the very end of Spacemacs initialization."
  '(dashboard-startup-banner 'logo)
  '(dashboard-week-agenda nil)
  '(debugger-batch-max-lines 40)
+ '(desktop-path '("~/.emacs.d/.cache/desktop" "~/.emacs.d/" "~"))
  '(doc-view-resolution 300)
  '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
