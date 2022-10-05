@@ -773,6 +773,8 @@ This function is called at the very end of Spacemacs initialization."
      ("FEATURE" . "wheat")
      ("DEBUG" . "grey")
 
+     ("EASY" . "dark orange")
+     ("HARD" . "red2")))
  '(lsp-client-packages
    '(ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte))
  '(lsp-idle-delay 1)
@@ -794,10 +796,11 @@ This function is called at the very end of Spacemacs initialization."
  '(org-agenda-category-icon-alist
    '(("serokell" "~/.emacs.d/private/icons/serokell.png" nil nil :ascent center)
      ("task" "~/.emacs.d/private/icons/checked.png" nil nil :ascent center)
-     ("science" "~/.emacs.d/private/icons/science.png" nil nil :ascent center)))
+     ("science" "~/.emacs.d/private/icons/science.png" nil nil :ascent center)
+     ("tho" "~/.emacs.d/private/icons/bulb.png" nil nil :ascent center)))
  '(org-agenda-current-time-string "ᐊ---------------")
  '(org-agenda-files
-   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
+   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
  '(org-agenda-prefix-format
    '((agenda . " %-3i %-12:c%?-12t% s")
      (todo . " %-3i %-12:c")
@@ -845,7 +848,14 @@ This function is called at the very end of Spacemacs initialization."
      ("listening" . "green4")
      ("reading" . "firebrick")
      ("vocab" . "DodgerBlue3")
-     ("arzamas" . "Gray")))
+     ("arzamas" . "Gray")
+     ("reread" :foreground "White" :slant italic)
+
+
+
+
+
+     ("health" . "Chartreuse")))
  '(org-todo-keyword-faces
    '(("DRAFT" . "#7d3c98")
      ("WORK" . "#ec7063")
