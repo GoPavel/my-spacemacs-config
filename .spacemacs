@@ -70,6 +70,7 @@ values."
      bibtex
      php
      csv
+     vimscript
      lua
      typescript
      json
@@ -119,12 +120,16 @@ values."
     company-lsp
     lsp-mode
 
+    ;; LSP testing
+    ert-runner
+
     cdlatex
     ;; magic-latex-buffer
 
     lsp-haskell
     ;;  structured-haskell-mode
 
+    ligo-mode
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -413,6 +418,13 @@ you should place your code here."
 
   (reverse-input-method 'russian-computer)
 
+  (require 'lsp-mode) ;; TODO: required for ligo-setup-lsp
+
+  (ligo-setup-lsp)
+  (add-hook 'ligo-caml-mode-hook #'lsp) ;; TODO change to 'lsp
+  (add-hook 'ligo-pascal-mode-hook #'lsp)
+  (add-hook 'ligo-reason-mode-hook #'lsp)
+
   (require 'org-gcal) ;; TODO: try to replace with use-package
   (setq org-gcal-client-id "CENSORED_CONTENT"
         org-gcal-client-secret "CENSORED_CONTENT")
@@ -470,6 +482,7 @@ you should place your code here."
   (add-hook 'tuareg-mode-hook (lambda() (setq mode-name "🐪")))
   (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
   (add-hook 'tuareg-mode-hook (lambda() (electric-indent-mode 0)))
+  ;; (add-hook 'ligo)
 
   (defun prompt-org-file (dir-path)
     `(lambda ()
@@ -702,6 +715,7 @@ This function is called at the very end of Spacemacs initialization."
  '(dashboard-set-heading-icons t)
  '(dashboard-startup-banner 'logo)
  '(dashboard-week-agenda nil)
+ '(debugger-batch-max-lines 40)
  '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-pos-tip-timeout 20)
@@ -742,6 +756,8 @@ This function is called at the very end of Spacemacs initialization."
 
  '(lsp-client-packages
    '(ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte))
+ '(lsp-idle-delay 1)
+ '(lsp-lens-enable nil)
  '(lsp-log-io t)
  '(magit-no-confirm nil)
  '(neo-auto-indent-point t t)
