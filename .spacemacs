@@ -96,30 +96,32 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-    (org-super-links :location (recipe :fetcher github :repo "toshism/org-super-links" :commit "develop"))
-    ;; org-super-links
-    cdlatex
-    org-fancy-priorities
-    all-the-icons
+    ;; Meta packages
+    ssh-agency
+    dashboard
+    pinentry ;; for git ssh
 
-    lsp-haskell
+    ;; Fancy stuff
+    all-the-icons
+    ;; Org-mode stuff
+    (org-super-links :location (recipe :fetcher github :repo "toshism/org-super-links" :commit "develop"))
+    ;; https://github.com/mickeynp/ligature.el (WAIT emacs 28)
+    org-gcal ;; sync org-mode with gcalendar
+    org-pomodoro ;; to structure your time
+    pomidor      ;; to softly keep work/rest balance
+    ;; org-ql [https://github.com/alphapapa/org-ql]
+    org-fancy-priorities
+
+    ;; Languages supplement
     company-lsp
     lsp-mode
 
+    cdlatex
     ;; magic-latex-buffer
-    ssh-agency
 
-    ;; org-ql [https://github.com/alphapapa/org-ql]
+    lsp-haskell
     ;;  structured-haskell-mode
 
-    dashboard
-
-    pinentry
-
-    org-pomodoro ;; to structure your time
-    pomidor      ;; to softly keep work/rest balance
-
-    org-gcal ;; sync org-mode with gcalendar
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -406,6 +408,8 @@ you should place your code here."
 
   (pinentry-start)
 
+  (reverse-input-method 'russian-computer)
+
   (require 'org-gcal) ;; TODO: try to replace with use-package
   (setq org-gcal-client-id "CENSORED_CONTENT"
         org-gcal-client-secret "CENSORED_CONTENT")
@@ -435,8 +439,6 @@ you should place your code here."
            ("C-c s d" . org-super-links-delete-link)))
 
   (setq neo-vc-integration '(face))
-
-  (reverse-input-method 'russian-computer)
 
   ;; (add-hook 'ocaml-mode-hook #'lsp)
   (add-hook 'tuareg-mode-hook 'tuareg-opam-update-env)
