@@ -677,6 +677,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(TeX-command-BibTeX "BibTeX")
+ '(TeX-command-Biber "biber")
  '(TeX-view-program-list
    '(("Okular"
       ("okular --noraise --unique %o"
@@ -690,6 +691,8 @@ This function is called at the very end of Spacemacs initialization."
      (output-dvi "xdvi")
      (output-pdf "Okular")
      (output-html "xdg-open")))
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(bibtex-align-at-equal-sign t)
  '(bibtex-entry-format
    '(opts-or-alts required-fields numerical-fields realign unify-case sort-fields))
@@ -722,6 +725,7 @@ This function is called at the very end of Spacemacs initialization."
  '(dashboard-items '((recents . 3) (bookmarks . 17) (projects . 3)))
  '(dashboard-set-file-icons t)
  '(dashboard-set-heading-icons t)
+ '(dashboard-set-navigator nil)
  '(dashboard-startup-banner 'logo)
  '(dashboard-week-agenda nil)
  '(debugger-batch-max-lines 40)
@@ -742,6 +746,7 @@ This function is called at the very end of Spacemacs initialization."
  '(helm-completion-style 'emacs)
  '(helm-grep-ag-command
    "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+ '(helm-mode t)
  '(hindent-style nil)
  '(hl-todo-keyword-faces
    '(("REVIEW" . "#7cb8bb")
@@ -771,20 +776,21 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-client-packages
    '(ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte))
  '(lsp-idle-delay 1)
+ '(lsp-latex-build-executable "xelatex")
  '(lsp-lens-enable nil)
  '(lsp-log-io t)
  '(magit-no-confirm nil)
- '(neo-auto-indent-point t t)
- '(neo-banner-message "Press ? for neotree help" t)
- '(neo-create-file-auto-open t t)
+ '(neo-auto-indent-point t)
+ '(neo-banner-message "Press ? for neotree help")
+ '(neo-create-file-auto-open t)
  '(neo-hidden-regexp-list
    '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$"))
- '(neo-show-hidden-files t t)
- '(neo-show-updir-line nil t)
- '(neo-smart-open t t)
+ '(neo-show-hidden-files t)
+ '(neo-show-updir-line nil)
+ '(neo-smart-open t)
  '(neo-theme 'icons)
- '(neo-vc-integration '(face) t)
- '(neo-window-width 28 t)
+ '(neo-vc-integration '(face))
+ '(neo-window-width 28)
  '(org-agenda-category-icon-alist
    '(("serokell" "~/.emacs.d/private/icons/serokell.png" nil nil :ascent center)
      ("task" "~/.emacs.d/private/icons/checked.png" nil nil :ascent center)
@@ -817,9 +823,10 @@ This function is called at the very end of Spacemacs initialization."
                  ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-gcal-fetch-file-alist
    '(("pavel.golovin@serokell.io" . "CENSORED_PATH")
-
+     ("upf1ho0lmijqrt0gnfa0vhhs4c@group.calendar.google.com" . "CENSORED_PATH")
      ("gopavel0@gmail.com" . "CENSORED_PATH")))
  '(org-gcal-recurring-events-mode 'top-level)
+ '(org-log-into-drawer t)
  '(org-lowest-priority 68)
  '(org-pomodoro-length 25)
  '(org-priority-faces '((65 . "red") (66 . "orange") (67 . "cyan")))
@@ -872,6 +879,8 @@ This function is called at the very end of Spacemacs initialization."
    '("/usr/share/emacs/26.2/site-lisp/elpa" "/usr/share/emacs/site-lisp/elpa"))
  '(package-selected-packages
    '(org-gcal csv pinentry hybrid-mode cpp-auto-include quelpa org-clock-csv pomidor pomodoro lean-mode helm-gtags ggtags counsel-gtags counsel swiper company-lua lua-mode ssh-agency web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode org-ref pdf-tools key-chord ivy tablist helm-bibtex bibtex-completion parsebib biblio biblio-core company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+ '(paradox-github-token t)
+ '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(pomidor-break-seconds 300)
  '(pomidor-seconds 1500)
  '(pomidor-sound-tack "nil")
@@ -882,12 +891,14 @@ This function is called at the very end of Spacemacs initialization."
  '(tooltip-hide-delay 20)
  '(tuareg-default-indent 4)
  '(tuareg-opam-insinuate t)
+ '(warning-suppress-types '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
  '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t)
  '(neo-vc-ignored-face ((t (:foreground "dim gray"))))
  '(neo-vc-unregistered-face ((t (:foreground "sienna"))) t)
  '(proof-eager-annotation-face ((t (:background "medium blue"))))
