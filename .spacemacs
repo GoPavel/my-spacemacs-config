@@ -36,6 +36,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; < Utilities >
      helm
      auto-completion
      git
@@ -49,6 +50,8 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      reverse-input-method ;; https://github.com/avkorablev/reverse-input-method-layer.git
+     pdf ;; `pdf-tools' layer instead of doc-view-mode
+
      ;; < Language layers >
      ocaml
      python
@@ -73,7 +76,6 @@ values."
      java
      (elm :variables
           company-idle-delay nil)
-     ;; intero
 
      lsp
      (haskell :variables
@@ -84,6 +86,7 @@ values."
      ;; TODO hindent, structured-haskell-mode
      ;; TODO better-defaults
 
+     ;; Theorem provers
      lean
      fstar
      coq
