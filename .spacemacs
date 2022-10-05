@@ -79,10 +79,17 @@ values."
           company-idle-delay nil)
 
      lsp
+     ;; (haskell :variables
+     ;;          haskell-completion-backend 'intero
+     ;;          haskell-process-type 'stack-ghci
+     ;;          ;; haskell-enable-hindent-style "fundamental"
+     ;;          )
      (haskell :variables
-              haskell-completion-backend 'intero
-              haskell-process-type 'stack-ghci
+              haskell-completion-backend 'lsp
+              ;; haskell-process-type 'stack-ghci
               ;; haskell-enable-hindent-style "fundamental"
+              ;; haskell-process-suggest-remove-import-lines nil ;; TODO WTF? 
+              ;; lsp-haskell-process-path-hie "haskell-language-server-wrapper"
               )
      ;; TODO hindent, structured-haskell-mode
      ;; TODO better-defaults
@@ -409,6 +416,8 @@ you should place your code here."
   (defconst lisp--prettify-symbols-alist
     '(("lambda"  . ?λ)))
 
+  (global-set-key (kbd "M-p") 'company-complete)
+
   ;; enable unicode emoji
   (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 
@@ -469,9 +478,9 @@ you should place your code here."
   ;; TODO create issue
   ;;(setq lsp-haskell-process-path-hie "hie-wrapper")
 
-  ;; (require 'lsp-mode)
-  ;;(require 'lsp-haskell)
-  ;;(add-hook 'haskell-mode-hook #'lsp)
+  ;; (require 'lsp-haskell)
+  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-literate-mode-hook #'lsp)
 
   ;;(require 'company-lsp)
   ;;(push 'company-lsp company-backends)
@@ -724,6 +733,11 @@ This function is called at the very end of Spacemacs initialization."
  '(flycheck-python-pylint-executable "python3")
  '(global-hl-todo-mode t)
  '(haskell-font-lock-symbols t)
+ '(haskell-font-lock-symbols-alist
+   '(("\\" . "λ")
+     ("undefined" . "⊥")
+     ("." "∘" haskell-font-lock-dot-is-not-composition)))
+ '(haskell-process-type 'stack-ghci)
  '(helm-ag-base-command "rg --vimgrep --no-heading --smart-case")
  '(helm-completion-style 'emacs)
  '(helm-grep-ag-command
