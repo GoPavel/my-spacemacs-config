@@ -493,6 +493,9 @@ you should place your code here."
     :custom (fira-code-mode-disabled-ligatures '("[]" "x" "-}"))  ; ligatures you don't want
     :hook prog-mode)                                         ; mode to enable fira-code-mode in
   (fira-code-mode-set-font)
+  ;; disable ligatures for some mode due to weird behaviour
+  (add-hook 'shell-mode-hook  (lambda () (fira-code-mode -1)))
+  (add-hook 'eshell-mode-hook (lambda () (fira-code-mode -1)))
 
   (global-prettify-symbols-mode +1)
   (use-package org-fancy-priorities
