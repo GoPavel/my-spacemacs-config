@@ -444,12 +444,51 @@ you should place your code here."
   (setq org-gcal-client-id "CENSORED_CONTENT"
         org-gcal-client-secret "CENSORED_CONTENT")
 
-  (require 'dashboard)
-  ;; (kill-buffer "*spacemacs*")
-  (dashboard-setup-startup-hook)
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (switch-to-buffer dashboard-buffer-name)
+  ;; NOTE: for some reasons configuration via `dotspacemacs/emacs-custom-settings' isn't working
+  ;; after some package update
+  ;;   (require 'dashboard)
+;;   (dashboard-setup-startup-hook)
+;;   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
+  (use-package dashboard
+    :ensure t
+    :custom
+    (dashboard-center-content t)
+    (dashboard-footer-messages
+      (with-temp-buffer
+        (insert-file-contents "CENSORED_PATH")
+        (split-string
+         (buffer-string)
+         "
+" t)))
+    (dashboard-heading-icons
+      '((recents . "history")
+        (bookmarks . "bookmark")
+        (agenda . "calendar")
+        (projects . "rocket")
+        (registers . "database")))
+    (dashboard-item-generators
+      '((recents . dashboard-insert-recents)
+        (bookmarks . dashboard-insert-bookmarks)
+        (projects . dashboard-insert-projects)
+        (agenda . dashboard-insert-agenda)
+        (registers . dashboard-insert-registers)))
+    (dashboard-items '((recents . 3) (bookmarks . 17) (projects . 3)))
+    (dashboard-set-file-icons t)
+    (dashboard-set-heading-icons t)
+    (dashboard-set-navigator nil)
+    (dashboard-startup-banner 'logo)
+    (dashboard-week-agenda nil)
+    :config
+    (defun dashboard-setup ()
+      (dashboard-insert-startupify-lists)
+      (when (< (length command-line-args) 2 )
+        (switch-to-buffer dashboard-buffer-name)
+        (goto-char (point-min))
+        (redisplay)))
+    (dashboard-setup)
+    )
+    
   (use-package fira-code-mode
     :custom (fira-code-mode-disabled-ligatures '("[]" "x" "-}"))  ; ligatures you don't want
     :hook prog-mode)                                         ; mode to enable fira-code-mode in
@@ -708,32 +747,6 @@ This function is called at the very end of Spacemacs initialization."
       "http://dx.doi.org/%s"
       ("doi" ".*" 0))
      (("pdf" . ".*:.*"))))
- '(dashboard-center-content t)
- '(dashboard-footer-messages
-   (with-temp-buffer
-     (insert-file-contents "CENSORED_PATH")
-     (split-string
-      (buffer-string)
-      "
-" t)))
- '(dashboard-heading-icons
-   '((recents . "history")
-     (bookmarks . "bookmark")
-     (agenda . "calendar")
-     (projects . "rocket")
-     (registers . "database")))
- '(dashboard-item-generators
-   '((recents . dashboard-insert-recents)
-     (bookmarks . dashboard-insert-bookmarks)
-     (projects . dashboard-insert-projects)
-     (agenda . dashboard-insert-agenda)
-     (registers . dashboard-insert-registers)))
- '(dashboard-items '((recents . 3) (bookmarks . 17) (projects . 3)))
- '(dashboard-set-file-icons t)
- '(dashboard-set-heading-icons t)
- '(dashboard-set-navigator nil)
- '(dashboard-startup-banner 'logo)
- '(dashboard-week-agenda nil)
  '(debugger-batch-max-lines 40)
  '(desktop-path '("~/.emacs.d/.cache/desktop" "~/.emacs.d/" "~"))
  '(doc-view-resolution 300)
