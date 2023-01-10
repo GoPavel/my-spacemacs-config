@@ -126,6 +126,8 @@ values."
     ;; org-ql [https://github.com/alphapapa/org-ql]
     org-fancy-priorities
 
+    org-analyzer ;; for fancy timetracking report
+
     ;; Languages supplement
     company-lsp
     lsp-mode
@@ -838,6 +840,7 @@ This function is called at the very end of Spacemacs initialization."
      (tags priority-down category-keep timestamp-down alpha-up)
      (search category-keep timestamp-down alpha-up)))
  '(org-agenda-start-with-log-mode '(closed))
+ '(org-analyzer-org-directory "CENSORED_PATH")
  '(org-archive-location "::* Archive")
  '(org-columns-default-format "%25ITEM %TODO %6Effort %6CLOCKSUM %TAGS")
  '(org-export-date-timestamp-format nil)
