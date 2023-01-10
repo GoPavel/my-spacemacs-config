@@ -40,7 +40,10 @@ values."
      helm
      auto-completion
      git
-     org
+     (org :variables
+          org-enable-roam-support t
+          org-enable-roam-ui t
+          org-enable-roam-protocol t)
      spell-checking
      syntax-checking
      version-control
@@ -404,6 +407,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; (add-hook 'tuareg-mode-hook (lambda () (merlin-xref-backend)))
 
   (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable)
+
+  ;; https://github.com/syl20bnr/spacemacs/issues/14477
+  (setq org-roam-directory "CENSORED_PATH")
   )
 
 (defun dotspacemacs/user-config ()
