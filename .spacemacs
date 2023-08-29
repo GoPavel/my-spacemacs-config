@@ -428,7 +428,11 @@ you should place your code here."
   (defconst lisp--prettify-symbols-alist
     '(("lambda"  . ?λ)))
 
+  ;;; Keybindings
   (global-set-key (kbd "M-p") 'company-complete)
+  (global-set-key (kbd "C-S-t") 'tab-new)
+  (global-set-key (kbd "M-m C-/") 'helm-do-grep-ag)
+  (global-set-key (kbd "C-c C-<tab>") 'org-force-cycle-archived)
 
   ;; enable unicode emoji
   (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
