@@ -510,6 +510,7 @@ you should place your code here."
   ;; disable ligatures for some mode due to weird behaviour
   (add-hook 'shell-mode-hook  (lambda () (fira-code-mode -1)))
   (add-hook 'eshell-mode-hook (lambda () (fira-code-mode -1)))
+  (add-hook 'sh-mode-hook     (lambda () (fira-code-mode -1))) ; most common
 
   (global-prettify-symbols-mode +1)
 
