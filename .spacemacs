@@ -125,7 +125,7 @@ values."
     pomidor      ;; to softly keep work/rest balance
     ;; org-ql [https://github.com/alphapapa/org-ql]
     org-fancy-priorities
-
+    olivetti ;; easy reading org files (with margin)
     org-analyzer ;; for fancy timetracking report
 
     ;; Languages supplement
@@ -406,6 +406,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (add-hook 'org-mode-hook (lambda () (set-fill-column 103)))
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (add-hook 'org-mode-hook 'olivetti-mode)
+
   ;; (add-hook 'tuareg-mode-hook (lambda () (merlin-xref-backend)))
 
   (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable)
@@ -823,6 +825,7 @@ This function is called at the very end of Spacemacs initialization."
  '(neo-theme 'icons)
  '(neo-vc-integration '(face) t)
  '(neo-window-width 28 t)
+ '(olivetti-lighter "⌨")
  '(org-agenda-category-icon-alist
    '(("serokell" "~/.emacs.d/private/icons/serokell.png" nil nil :ascent center)
      ("task" "~/.emacs.d/private/icons/checked.png" nil nil :ascent center)
