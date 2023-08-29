@@ -71,3 +71,12 @@
 **** Lean
      - [[https://github.com/robkorn/spacemacs-lean-layer][Follow install instruction from README]]
 
+
+** Org-roam
+    BAD:
+    + several profiles is not working properly
+    + showing backlinks work not so smooth and storing in db
+      (this can be solved by calling =org-super-links-convert-to-super= after inserting link)
+    GOOD:
+    + fast finding nodes
+    + nice ui graph

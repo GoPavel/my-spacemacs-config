@@ -502,6 +502,8 @@ you should place your code here."
   (add-hook 'eshell-mode-hook (lambda () (fira-code-mode -1)))
 
   (global-prettify-symbols-mode +1)
+
+  ;;; Org-mode
   (use-package org-fancy-priorities
     :ensure t
     :hook
@@ -533,21 +535,21 @@ you should place your code here."
 
   (setq org-capture-templates
         `(
-          ("t" "Thoughts" plain
-           (file ,(prompt-org-file "CENSORED_PATH"))
-           ,(concat
-             "#+SEQ_TODO: FOG(f) DRAFT(d) OPEN(o!) WORK(w!) CLEAR(c!)\n"
-             "#+SEQ_TODO: NOTE(n)\n"
-             "#+CATEGORY: tho\n"
-             "\n"
-             "* DRAFT %? %^G\n")
-           )
+          ;; ("t" "Thoughts" plain
+          ;;  (file ,(prompt-org-file "CENSORED_PATH"))
+          ;;  ,(concat
+          ;;    "#+SEQ_TODO: FOG(f) DRAFT(d) OPEN(o!) WORK(w!) CLEAR(c!)\n"
+          ;;    "#+SEQ_TODO: NOTE(n)\n"
+          ;;    "#+CATEGORY: tho\n"
+          ;;    "\n"
+          ;;    "* DRAFT %? %^G\n")
+          ;;  )
           ("b" "Web bookmark" plain
            (file "CENSORED_PATH")
            "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
-          ("s" "Science (web) bookmark" plain
-           (file "CENSORED_PATH")
-           "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
+          ;; ("s" "Science (web) bookmark" plain
+          ;;  (file "CENSORED_PATH")
+          ;;  "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
           ("n" "News bookmark" plain
            (file "CENSORED_PATH")
            "* TODO [[%(call-interactively #'prompt-link)][%?]]\n")
@@ -607,7 +609,7 @@ This function is called at the very end of Spacemacs initialization."
      ((output-dvi style-pstricks)
       "dvips and gv")
      (output-dvi "xdvi")
-     (output-pdf "Okular")
+     (output-pdf "PDF Tools")
      (output-html "xdg-open")))
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
@@ -668,7 +670,6 @@ This function is called at the very end of Spacemacs initialization."
      ("CHECK" . "#cdcd00")
      ("FEATURE" . "wheat")
      ("DEBUG" . "grey")
-
      ("EASY" . "dark orange")
      ("HARD" . "red2")))
  '(js-indent-level 2)
@@ -699,7 +700,7 @@ This function is called at the very end of Spacemacs initialization."
      ("tho" "~/.emacs.d/private/icons/bulb.png" nil nil :ascent center)))
  '(org-agenda-current-time-string "ᐊ---------------")
  '(org-agenda-files
-   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
+   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
  '(org-agenda-prefix-format
    '((agenda . " %-3i %-12:c%?-12t% s")
      (todo . " %-3i %-12:c")
@@ -729,8 +730,11 @@ This function is called at the very end of Spacemacs initialization."
      ("upf1ho0lmijqrt0gnfa0vhhs4c@group.calendar.google.com" . "CENSORED_PATH")
      ("gopavel0@gmail.com" . "CENSORED_PATH")))
  '(org-gcal-recurring-events-mode 'top-level)
+ '(org-image-actual-width '(400))
+ '(org-latex-pdf-process
+   '("latexmk -interaction=nonstopmode -pdf -output-directory=%o %f"))
+ '(org-latex-remove-logfiles t)
  '(org-log-into-drawer t)
- '(org-lowest-priority 68)
  '(org-pomodoro-length 25)
  '(org-priority-faces '((65 . "red") (66 . "orange") (67 . "cyan")))
  '(org-priority-lowest 68)
@@ -750,12 +754,13 @@ This function is called at the very end of Spacemacs initialization."
      ("vocab" . "DodgerBlue3")
      ("arzamas" . "Gray")
      ("reread" :foreground "White" :slant italic)
+     ("relation" . "Red")
+     ("refl" . "PowderBlue")
+     ("communication" . "DeepSkyBlue")
 
-
-
-
-
-     ("health" . "Chartreuse")))
+     ("brain_fog" . "White")
+     ("health" . "Chartreuse")
+     ("issue" . "red")))
  '(org-todo-keyword-faces
    '(("DRAFT" . "#7d3c98")
      ("WORK" . "#ec7063")
@@ -777,6 +782,7 @@ This function is called at the very end of Spacemacs initialization."
      ("NOTES" . "YellowGreen")
      ("THINK" . "NavajoWhite")
      ("EXPLORE" . "MediumPurple")
+     ("ASK" . "DarkOrchid")
      ("RUST" . "Sienna")))
  '(origami-show-fold-header t)
  '(package-archives
