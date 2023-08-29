@@ -142,6 +142,7 @@ values."
     lsp-haskell
     ;;  structured-haskell-mode
 
+    ;; (ligo-mode :location local)
     ligo-mode
     )
    ;; A list of packages that cannot be updated.
@@ -434,7 +435,7 @@ you should place your code here."
 
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
 
-  (pinentry-start)
+  (pinentry-start) ;; for ssh (e.g. sign commit)
 
   (reverse-input-method 'russian-computer)
 
@@ -493,7 +494,8 @@ you should place your code here."
         (redisplay)))
     (dashboard-setup)
     )
-    
+
+  ;; ligature package
   (use-package fira-code-mode
     :custom (fira-code-mode-disabled-ligatures '("[]" "x" "-}"))  ; ligatures you don't want
     :hook prog-mode)                                         ; mode to enable fira-code-mode in
