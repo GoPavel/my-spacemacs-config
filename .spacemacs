@@ -127,6 +127,7 @@ values."
     org-fancy-priorities
     olivetti ;; easy reading org files (with margin)
     org-analyzer ;; for fancy timetracking report
+    org-mru-clock ;; show most recent task for quick timetracking
 
     ;; Languages supplement
     company-lsp
@@ -526,6 +527,12 @@ you should place your code here."
        (interactive)
        (let ((name (read-string "Filename: ")))
          (expand-file-name (format "%s.org" name) ',dir-path))))
+
+  ;; doc: https://github.com/unhammer/org-mru-clock
+  (use-package org-mru-clock
+    :ensure t
+    :bind* (("C-c C-x i" . org-mru-clock-in)
+            ("C-c C-x C-j" . org-mru-clock-select-recent-task)))
 
   (defun prompt-link ()
     "Prompt link"
