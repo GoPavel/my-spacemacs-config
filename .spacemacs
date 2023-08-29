@@ -440,7 +440,10 @@ you should place your code here."
   (reverse-input-method 'russian-computer)
 
   (require 'lsp-mode) ;; TODO: required for ligo-setup-lsp
-
+  (quelpa '(ligo-mode :fetcher file
+                      :path "CENSORED_PATH"))
+  ;; (setq ligo-squirrel-bin '("~/Downloads/ligo" "lsp"))
+  ;; (setq ligo-squirrel-bin "ligo.sh")
   (ligo-setup-lsp)
   (add-hook 'ligo-caml-mode-hook #'lsp) ;; TODO change to 'lsp
   (add-hook 'ligo-pascal-mode-hook #'lsp)
