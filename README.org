@@ -67,9 +67,12 @@
     - install fonts =M-x all-the-icons-install-fonts=
     - added hook in =user-conifg= for sustaining state of variables =neo-vs-integration= (maybe it'll
       redundant in future)
-*** Layers
+*** Private Layers
 **** Lean
      - [[https://github.com/robkorn/spacemacs-lean-layer][Follow install instruction from README]]
+**** FStar
+     - [[https://github.com/FStarLang/fstar-layer][Follow install instruction from README]]
+
 
 
 ** Org-roam
