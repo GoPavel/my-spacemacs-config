@@ -403,7 +403,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; TODO: move the all to the user-config
 
-  (add-hook 'coq-mode-hook 'column-enforce-mode)
+  (add-hook 'coq-mode-hook #'column-enforce-mode)
   (setq-default dotspacemacs-configuration-layers
     '(syntax-checking :variables syntax-checking-enable-by-default nil))
   (add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 103))) ;; half monitor width
@@ -413,8 +413,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'bibtex-mode-hook (lambda () (set-fill-column 100)))
 
   (add-hook 'org-mode-hook (lambda () (set-fill-column 103)))
-  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (add-hook 'org-mode-hook #'turn-on-auto-fill)
   (add-hook 'org-mode-hook 'olivetti-mode)
+  (add-hook 'org-clock-out-hook #'save-buffer) ;; save before writing log note :/
+  (add-hook 'org-clock-in-hook #'save-buffer)
+
+  (add-hook 'LaTeX-mode-hook 'olivetti-mode)
 
   ;; (add-hook 'tuareg-mode-hook (lambda () (merlin-xref-backend)))
 
@@ -453,7 +457,7 @@ you should place your code here."
   ;; (setq ligo-squirrel-bin '("~/Downloads/ligo" "lsp"))
   ;; (setq ligo-squirrel-bin "ligo.sh")
   (ligo-setup-lsp)
-  (add-hook 'ligo-caml-mode-hook #'lsp) ;; TODO change to 'lsp
+  (add-hook 'ligo-caml-mode-hook #'lsp)
   (add-hook 'ligo-pascal-mode-hook #'lsp)
   (add-hook 'ligo-reason-mode-hook #'lsp)
 
@@ -611,7 +615,7 @@ you should place your code here."
   (global-set-key (kbd "M-<return> r s") 'org-roam-switch)
 
   ;; (add-hook 'ocaml-mode-hook #'lsp)
-  (add-hook 'tuareg-mode-hook 'tuareg-opam-update-env)
+  (add-hook 'tuareg-mode-hook #'tuareg-opam-update-env)
   (add-hook 'tuareg-mode-hook #'lsp)
   (add-hook 'elm-mode-hook #'lsp)
 
