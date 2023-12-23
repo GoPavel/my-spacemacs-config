@@ -549,8 +549,8 @@ you should place your code here."
   ;; doc: https://github.com/unhammer/org-mru-clock
   (use-package org-mru-clock
     :ensure t
-    :bind* (("C-c C-x i" . org-mru-clock-in)
-            ("C-c C-x C-j" . org-mru-clock-select-recent-task)))
+    :bind* (("M-m a o C m" . org-mru-clock-in)
+            ("M-m a o C s" . org-mru-clock-select-recent-task)))
 
   (defun prompt-link ()
     "Prompt link"
@@ -741,7 +741,7 @@ This function is called at the very end of Spacemacs initialization."
  '(neo-banner-message "Press ? for neotree help" t)
  '(neo-create-file-auto-open t t)
  '(neo-hidden-regexp-list
-   '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$" "^Makefile.coq$" "^Makefile.coq.conf$"))
+   '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$" "^Makefile.coq$" "^Makefile.coq.conf$" "\\.aux$" "\\.bbl$" "\\.bcf$" "\\.blg$" "\\.run.xml$" "\\.fls$" "\\.tdo$" "\\.log$" "\\.out$" "\\.synctex.gz$" "\\.fdb_latexmk$"))
  '(neo-show-hidden-files t t)
  '(neo-show-updir-line nil t)
  '(neo-smart-open t t)
@@ -770,6 +770,7 @@ This function is called at the very end of Spacemacs initialization."
  '(org-agenda-start-with-log-mode '(closed))
  '(org-analyzer-org-directory "CENSORED_PATH")
  '(org-archive-location "::* Archive")
+ '(org-clock-idle-time 10)
  '(org-columns-default-format "%25ITEM %TODO %6Effort %6CLOCKSUM %TAGS")
  '(org-export-date-timestamp-format nil)
  '(org-file-apps
@@ -791,6 +792,7 @@ This function is called at the very end of Spacemacs initialization."
    '("latexmk -interaction=nonstopmode -pdf -output-directory=%o %f"))
  '(org-latex-remove-logfiles t)
  '(org-log-into-drawer t)
+ '(org-log-note-clock-out t)
  '(org-pomodoro-length 25)
  '(org-priority-faces '((65 . "red") (66 . "orange") (67 . "cyan")))
  '(org-priority-lowest 68)
@@ -859,6 +861,7 @@ This function is called at the very end of Spacemacs initialization."
  '(pomidor-seconds 1500)
  '(pomidor-sound-tack "nil")
  '(pomidor-sound-tick "nil")
+ '(prettify-symbols-unprettify-at-point t)
  '(python-shell-interpreter "python")
  '(safe-local-variable-values
    '((typescript-backend . tide)
