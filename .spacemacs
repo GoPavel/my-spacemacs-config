@@ -554,10 +554,17 @@ you should place your code here."
     (read-string "Link: ")
   )
 
+  (defun prompt-heading ()
+    ;; TODO
+    ;; possible realizations:
+    ;; https://stackoverflow.com/questions/9005843
+    ;; https://emacs.stackexchange.com/questions/71093
+    )
+
   (setq org-capture-templates
         `(
           ;; ("t" "Thoughts" plain
-          ;;  (file ,(prompt-org-file "CENSORED_PATH"))
+
           ;;  ,(concat
           ;;    "#+SEQ_TODO: FOG(f) DRAFT(d) OPEN(o!) WORK(w!) CLEAR(c!)\n"
           ;;    "#+SEQ_TODO: NOTE(n)\n"
@@ -566,19 +573,21 @@ you should place your code here."
           ;;    "* DRAFT %? %^G\n")
           ;;  )
           ("b" "Web bookmark" plain
-           (file "CENSORED_PATH")
-           "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
-          ;; ("s" "Science (web) bookmark" plain
-          ;;  (file "CENSORED_PATH")
-          ;;  "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
-          ("n" "News bookmark" plain
-           (file "CENSORED_PATH")
-           "* TODO [[%(call-interactively #'prompt-link)][%?]]\n")
-          )
-        ;; ("todo" "TODO" entry))
-  )
-  (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
 
+           "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
+          ("s" "Science (web) bookmark" plain
+            (file "CENSORED_PATH")
+            "* TODO [[%(call-interactively #'prompt-link)][%^{PROMPT}] %^G\n%^{AUTHOR}p")
+          ("n" "News bookmark" plain
+
+           "* TODO [[%(call-interactively #'prompt-link)][%?]]\n")
+          ("o" "Book" entry
+           (file+headline "CENSORED_PATH" prompt-heading)
+           "\n** TODO %?\n") ;; TODO
+        ;; ("todo" "TODO" entry))
+          )
+  )
+  (add-hook 'org-capture-prepare-finalize-hook #'org-id-get-create)
   (setq neo-vc-integration '(face))
 
   ;; Org-roam
