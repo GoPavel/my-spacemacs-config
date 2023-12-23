@@ -14,7 +14,10 @@
   - [X] fix rewrite =neo-vc-integration= ([[https://github.com/syl20bnr/spacemacs/issues/10504][issue]])
   - [ ] add hook for =tuareg-update && restart-lsp-server=
   - [ ] saving several session layouts to quickly resume workspaces after reboot.
-        (maybe it should relay on projectile) 
+        (maybe it should relay on projectile)
+  - [ ] backup: add saving =.emaacs.d/.cache/bookmarks=
+  - [ ] backup: add saving private lines into encrypted patch
+  - [ ] backup: add saving/copying private icons
 ** Cheat sheet
 *** Basic
     - =M-x command= call command by its name
@@ -83,3 +86,18 @@
     GOOD:
     + fast finding nodes
     + nice ui graph
+
+* Notes
+
+** Keybinding convention
+    In emacs one command can be summoned in a lot of ways. For example, =org-capture=:
+    + =M-m C c= is global binding that came from mnemonic "*C*apture -> org-*c*capture"
+    + =M-m a o c= is global binding that came from "Applications -> org-mode -> org-capture"
+    + =M-RET c= is in-active-org-file binding for faster access
+    + =M-m m c= is in-active-major-mode binding
+
+    So now for me it's a bit clear and will try to keep it in mind for new commands
+
+** My Clock workflow
+  + =org-mru-clock= package
+  + CLOCKED view in agenda (=l= binding)
