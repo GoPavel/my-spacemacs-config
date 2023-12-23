@@ -414,8 +414,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable)
 
-  ;; https://github.com/syl20bnr/spacemacs/issues/14477
-  (setq org-roam-directory "CENSORED_PATH")
   )
 
 (defun dotspacemacs/user-config ()
@@ -576,6 +574,26 @@ you should place your code here."
   (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
 
   (setq neo-vc-integration '(face))
+
+  ;; Org-roam
+  ;; Check:
+  ;; https://github.com/syl20bnr/spacemacs/issues/14477 (SOLVED)
+  ;; https://github.com/org-roam/org-roam-ui/issues/236 (WORKAROUND)
+  (setq  org-roam-directory "CENSORED_PATH"
+         org-roam-db-location "CENSORED_PATH")
+  (defun org-roam-switch (i)
+    "Switch to another roam profile"
+    (interactive "nProfile (1 - uni, 2 - research, 3 - book): ")
+    (cond ((equal i 1) (setq org-roam-directory "CENSORED_PATH"
+                             org-roam-db-location "CENSORED_PATH"))
+          ((equal i 2) (setq org-roam-directory "CENSORED_PATH"
+                             org-roam-db-location "CENSORED_PATH"))
+          ((equal i 3) (setq org-roam-directory "CENSORED_PATH"
+                             org-roam-db-location "CENSORED_PATH"))
+          (t (message "Wrong argument")))
+    (org-roam-db-sync)
+  )
+  (global-set-key (kbd "M-<return> r s") 'org-roam-switch)
 
   ;; (add-hook 'ocaml-mode-hook #'lsp)
   (add-hook 'tuareg-mode-hook 'tuareg-opam-update-env)
@@ -822,14 +840,7 @@ This function is called at the very end of Spacemacs initialization."
  '(pomidor-sound-tick "nil")
  '(python-shell-interpreter "python")
  '(safe-local-variable-values
-   '((org-roam-db-location . "CENSORED_PATH")
-     (org-roam-directory . "CENSORED_PATH")
-     (org-roam-db-location . "CENSORED_PATH")
-     (org-roam-directory . "CENSORED_PATH")
-     (org-roam-ui-port . 35901)
-     (org-roam-db-location . "CENSORED_PATH")
-     (org-roam-directory . "CENSORED_PATH")
-     (typescript-backend . tide)
+   '((typescript-backend . tide)
      (typescript-backend . lsp)
      (javascript-backend . tide)
      (javascript-backend . tern)
