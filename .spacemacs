@@ -144,6 +144,12 @@ values."
 
     ;; (ligo-mode :location local)
     ligo-mode
+
+    ;; repo is dead: https://github.com/jcsalomon/smarttabs
+    ;; smart-tabs-mode
+    (smart-tabs-mode :location (recipe :fetcher github
+                                       :repo "miketz/smarttabs"
+                                       :branch "mine"))
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -619,6 +625,8 @@ you should place your code here."
   (add-hook 'tuareg-mode-hook (lambda() (setq mode-name "🐪")))
   (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
   (add-hook 'tuareg-mode-hook (lambda() (electric-indent-mode 0)))
+
+  (smart-tabs-insinuate 'c)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -847,6 +855,7 @@ This function is called at the very end of Spacemacs initialization."
      (javascript-backend . lsp)))
  '(sh-basic-offset 2)
  '(tab-bar-mode t)
+ '(tab-width 2)
  '(tex-bibtex-command "biber")
  '(tooltip-hide-delay 20)
  '(tuareg-default-indent 4)
