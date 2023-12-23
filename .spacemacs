@@ -870,6 +870,7 @@ This function is called at the very end of Spacemacs initialization."
      (javascript-backend . tern)
      (javascript-backend . lsp)))
  '(sh-basic-offset 2)
+ '(spacemacs-yank-indent-threshold 0)
  '(tab-bar-mode t)
  '(tab-width 2)
  '(tex-bibtex-command "biber")
