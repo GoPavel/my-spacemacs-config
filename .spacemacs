@@ -461,6 +461,7 @@ you should place your code here."
   (add-hook 'ligo-pascal-mode-hook #'lsp)
   (add-hook 'ligo-reason-mode-hook #'lsp)
 
+  (require 'org-protocol)
   (require 'org-gcal) ;; TODO: try to replace with use-package
   (setq org-gcal-client-id "CENSORED_CONTENT"
         org-gcal-client-secret "CENSORED_CONTENT")
@@ -576,6 +577,10 @@ you should place your code here."
           ;;    "\n"
           ;;    "* DRAFT %? %^G\n")
           ;;  )
+	        ("p" "Protocol" plain (file "CENSORED_PATH")
+           "* %? [[%:link][%:description]] %^G\nCaptured On: %U\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+	        ("L" "Protocol Link" plain (file "CENSORED_PATH")
+           "* %? [[%:link][%:description]] %^G\nCaptured On: %U")
           ("b" "Web bookmark" plain
 
            "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
