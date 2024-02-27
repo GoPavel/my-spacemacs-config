@@ -551,7 +551,10 @@ you should place your code here."
   (use-package org-mru-clock
     :ensure t
     :bind* (("M-m a o C m" . org-mru-clock-in)
-            ("M-m a o C s" . org-mru-clock-select-recent-task)))
+            ("M-m a o C s" . org-mru-clock-select-recent-task))
+    :commands org-mru-clock--completing-read ;; for org-clock-in-past
+    :autoload (org-mru-clock-to-history)
+    )
 
   (defun prompt-link ()
     "Prompt link"
@@ -598,6 +601,24 @@ you should place your code here."
   )
   (add-hook 'org-capture-prepare-finalize-hook #'org-id-get-create)
   (setq neo-vc-integration '(face))
+
+  ;; Org-clocking
+  (defun org-clock-in-past ()
+    "Insert clock record from the past"
+    (interactive "")
+    (org-mru-clock-to-history nil) ;; load mru state
+    (let* ((marker (cdr (org-mru-clock--completing-read)))
+           (start (org-read-date t t nil "Start: "))
+           (duration (read-string "Duration (m): "))
+           (seconds  (* 60 (org-duration-to-minutes duration))))
+      ;; inspired by org-mru-clock--clock-in-on-marker
+      (with-current-buffer (org-base-buffer (marker-buffer marker))
+        (org-with-wide-buffer
+         (goto-char (marker-position marker))
+         (org-clock-in nil start)))
+      (org-clock-out nil nil (time-add start (seconds-to-time seconds)))
+      ))
+  (global-set-key (kbd "M-m a o C p") 'org-clock-in-past)
 
   ;; Org-roam
   ;; Check:
