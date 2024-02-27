@@ -723,10 +723,9 @@ This function is called at the very end of Spacemacs initialization."
      ("undefined" . "⊥")
      ("." "∘" haskell-font-lock-dot-is-not-composition)))
  '(haskell-process-type 'stack-ghci)
- '(helm-ag-base-command "rg --vimgrep --no-heading --smart-case")
+;; '(helm-ag-base-command "rg --vimgrep --no-heading --smart-case")
  '(helm-completion-style 'emacs)
- '(helm-grep-ag-command
-   "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+;; '(helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
  '(helm-mode t)
  '(hindent-style nil)
  '(hl-todo-keyword-faces
