@@ -628,7 +628,7 @@ you should place your code here."
          org-roam-db-location "CENSORED_PATH")
   (defun org-roam-switch (i)
     "Switch to another roam profile"
-    (interactive "nProfile (1 - uni, 2 - research, 3 - book): ")
+    (interactive "nProfile (1 - tho, 2 - research, 3 - book): ")
     (cond ((equal i 1) (setq org-roam-directory "CENSORED_PATH"
                              org-roam-db-location "CENSORED_PATH"))
           ((equal i 2) (setq org-roam-directory "CENSORED_PATH"
@@ -638,7 +638,8 @@ you should place your code here."
           (t (message "Wrong argument")))
     (org-roam-db-sync)
   )
-  (global-set-key (kbd "M-<return> r s") 'org-roam-switch)
+  (global-set-key (kbd "M-RET r s") 'org-roam-switch)
+
 
   ;; (add-hook 'ocaml-mode-hook #'lsp)
   (add-hook 'tuareg-mode-hook #'tuareg-opam-update-env)
