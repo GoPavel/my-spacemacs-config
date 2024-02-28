@@ -52,7 +52,12 @@ values."
      syntax-checking
      version-control
      emacs-lisp
-     neotree
+     (neotree :variables
+              neo-window-width 28
+              neo-vc-integration '(face)
+              neo-theme 'icons
+              neo-hidden-regexp-list
+              neo-hidden-regexp-list '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$" "^Makefile.coq$" "^Makefile.coq.conf$" "\\.aux$" "\\.bbl$" "\\.bcf$" "\\.blg$" "\\.run.xml$" "\\.fls$" "\\.tdo$" "\\.log$" "\\.out$" "\\.synctex.gz$" "\\.fdb_latexmk$"))
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -119,10 +124,15 @@ values."
     ;; https://github.com/mickeynp/ligature.el (WAIT emacs 28)
     org-gcal ;; sync org-mode with gcalendar
     org-pomodoro ;; to structure your time
-    pomidor      ;; to softly keep work/rest balance
+    (pomidor :variables ;; to softly keep work/rest balance
+             pomidor-break-seconds 300
+             pomidor-seconds 1500
+             pomidor-sound-tick "nil"
+             pomidor-sound-tack "nil")
     ;; org-ql [https://github.com/alphapapa/org-ql]
     org-fancy-priorities
-    olivetti ;; easy reading org files (with margin)
+    (olivetti :variables ;; easy reading org files (with margin)
+              olivetti-lighter "⌨")
     org-analyzer ;; for fancy timetracking report
     org-mru-clock ;; show most recent task for quick timetracking
 
@@ -735,18 +745,6 @@ This function is called at the very end of Spacemacs initialization."
  '(lsp-lens-enable nil)
  '(lsp-log-io t)
  '(magit-no-confirm nil)
- '(neo-auto-indent-point t t)
- '(neo-banner-message "Press ? for neotree help" t)
- '(neo-create-file-auto-open t t)
- '(neo-hidden-regexp-list
-   '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$" "^Makefile.coq$" "^Makefile.coq.conf$" "\\.aux$" "\\.bbl$" "\\.bcf$" "\\.blg$" "\\.run.xml$" "\\.fls$" "\\.tdo$" "\\.log$" "\\.out$" "\\.synctex.gz$" "\\.fdb_latexmk$"))
- '(neo-show-hidden-files t t)
- '(neo-show-updir-line nil t)
- '(neo-smart-open t t)
- '(neo-theme 'icons)
- '(neo-vc-integration '(face) t)
- '(neo-window-width 28 t)
- '(olivetti-lighter "⌨")
  '(org-agenda-category-icon-alist
    '(("serokell" "~/.emacs.d/private/icons/serokell.png" nil nil :ascent center)
      ("task" "~/.emacs.d/private/icons/checked.png" nil nil :ascent center)
@@ -855,10 +853,6 @@ This function is called at the very end of Spacemacs initialization."
  '(paradox-github-token t)
  '(pdf-view-continuous t)
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
- '(pomidor-break-seconds 300)
- '(pomidor-seconds 1500)
- '(pomidor-sound-tack "nil")
- '(pomidor-sound-tick "nil")
  '(prettify-symbols-unprettify-at-point t)
  '(python-shell-interpreter "python")
  '(safe-local-variable-values
