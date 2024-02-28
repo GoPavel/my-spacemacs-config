@@ -563,7 +563,7 @@ you should place your code here."
   (setq org-capture-templates
         `(
           ;; ("t" "Thoughts" plain
-
+          ;;  (file ,(prompt-org-file "CENSORED_PATH"))
           ;;  ,(concat
           ;;    "#+SEQ_TODO: FOG(f) DRAFT(d) OPEN(o!) WORK(w!) CLEAR(c!)\n"
           ;;    "#+SEQ_TODO: NOTE(n)\n"
@@ -576,13 +576,13 @@ you should place your code here."
 	        ("L" "Protocol Link" plain (file "CENSORED_PATH")
            "* %? [[%:link][%:description]] %^G\nCaptured On: %U")
           ("b" "Web bookmark" plain
-
+           (file "CENSORED_PATH")
            "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
           ("s" "Science (web) bookmark" plain
             (file "CENSORED_PATH")
             "* TODO [[%(call-interactively #'prompt-link)][%^{PROMPT}] %^G\n%^{AUTHOR}p")
           ("n" "News bookmark" plain
-
+           (file "CENSORED_PATH") ;; TODO
            "* TODO [[%(call-interactively #'prompt-link)][%?]]\n")
           ("o" "Book" entry
            (file+headline "CENSORED_PATH" prompt-heading)
