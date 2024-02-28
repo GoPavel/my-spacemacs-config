@@ -82,11 +82,6 @@ values."
           company-idle-delay nil)
 
      lsp
-     ;; (haskell :variables
-     ;;          haskell-completion-backend 'intero
-     ;;          haskell-process-type 'stack-ghci
-     ;;          ;; haskell-enable-hindent-style "fundamental"
-     ;;          )
      (haskell :variables
               haskell-completion-backend 'lsp
               ;; haskell-process-type 'stack-ghci
@@ -98,8 +93,8 @@ values."
      ;; TODO better-defaults
 
      ;; Theorem provers
-     lean
-     fstar
+     ;; lean
+     ;; fstar
      coq
      )
    ;; List of additional packages that will be installed without being
@@ -130,7 +125,6 @@ values."
     org-mru-clock ;; show most recent task for quick timetracking
 
     ;; Languages supplement
-    company-lsp
     lsp-mode
 
     ;; LSP testing
@@ -142,8 +136,8 @@ values."
     lsp-haskell
     ;;  structured-haskell-mode
 
-    ;; (ligo-mode :location local)
-    ligo-mode
+    ;; (ligo-mode :location local) ;; for debug
+    ;; ligo-mode
 
     ;; repo is dead: https://github.com/jcsalomon/smarttabs
     ;; smart-tabs-mode
@@ -451,15 +445,11 @@ you should place your code here."
 
   (reverse-input-method 'russian-computer)
 
-  (require 'lsp-mode) ;; TODO: required for ligo-setup-lsp
-  (quelpa '(ligo-mode :fetcher file
-                      :path "CENSORED_PATH"))
-  ;; (setq ligo-squirrel-bin '("~/Downloads/ligo" "lsp"))
-  ;; (setq ligo-squirrel-bin "ligo.sh")
-  (ligo-setup-lsp)
-  (add-hook 'ligo-caml-mode-hook #'lsp)
-  (add-hook 'ligo-pascal-mode-hook #'lsp)
-  (add-hook 'ligo-reason-mode-hook #'lsp)
+  ;; (require 'lsp-mode) ;; required for ligo-setup-lsp
+  ;; (quelpa '(ligo-mode :fetcher file
+  ;;                     :path "CENSORED_PATH"))
+  ;; (ligo-setup-lsp)
+  ;; (add-hook 'ligo-caml-mode-hook #'lsp)
 
   (require 'org-protocol)
   (require 'org-gcal) ;; TODO: try to replace with use-package
@@ -646,19 +636,9 @@ you should place your code here."
   (add-hook 'tuareg-mode-hook #'lsp)
   (add-hook 'elm-mode-hook #'lsp)
 
-  ;;; Haskell IDE
-  ;; TODO LSP not work. Raise Keyword :end-column not one of (...)
-  ;; TODO create issue
-  ;;(setq lsp-haskell-process-path-hie "hie-wrapper")
-
   ;; (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp)
   (add-hook 'haskell-literate-mode-hook #'lsp)
-
-  ;;(require 'company-lsp)
-  ;;(push 'company-lsp company-backends)
-
-  ;; (add-hook 'intero-mode-hook 'column-enforce-mode)
 
   ;;; Ocaml and Coq IDE
   (add-hook 'tuareg-mode-hook 'column-enforce-mode)
