@@ -39,6 +39,9 @@ values."
      ;; < Utilities >
      systemd
      helm
+     (unicode-fonts :variables
+                    unicode-fonts-enable-ligatures t
+                    unicode-fonts-ligature-modes '(text-mode))
      auto-completion
      git
      (org :variables
@@ -110,8 +113,6 @@ values."
 
     ;; Fancy stuff
     all-the-icons
-    fira-code-mode
-    ;; (ligature :location (recipe :fetcher github :repo "mickeynp/ligature.el" :commit "master"))
 
     ;; Org-mode stuff
     (org-super-links :location (recipe :fetcher github :repo "toshism/org-super-links" :commit "develop"))
@@ -501,16 +502,6 @@ you should place your code here."
         (redisplay)))
     (dashboard-setup)
     )
-
-  ;; ligature package
-  (use-package fira-code-mode
-    :custom (fira-code-mode-disabled-ligatures '("[]" "x" "-}"))  ; ligatures you don't want
-    :hook prog-mode)                                         ; mode to enable fira-code-mode in
-  (fira-code-mode-set-font)
-  ;; disable ligatures for some mode due to weird behaviour
-  (add-hook 'shell-mode-hook  (lambda () (fira-code-mode -1)))
-  (add-hook 'eshell-mode-hook (lambda () (fira-code-mode -1)))
-  (add-hook 'sh-mode-hook     (lambda () (fira-code-mode -1))) ; most common
 
   (global-prettify-symbols-mode +1)
 
