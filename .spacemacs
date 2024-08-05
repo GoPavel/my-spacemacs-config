@@ -42,7 +42,7 @@ values."
      (unicode-fonts :variables
                     unicode-fonts-enable-ligatures t
                     unicode-fonts-ligature-modes '(text-mode))
-     auto-completion
+     ;; auto-completion ;; use pure company-mode instead
      git
      (org :variables
           org-enable-roam-support t
@@ -56,7 +56,6 @@ values."
               neo-window-width 28
               neo-vc-integration '(face)
               neo-theme 'icons
-              neo-hidden-regexp-list
               neo-hidden-regexp-list '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$" "^Makefile.coq$" "^Makefile.coq.conf$" "\\.aux$" "\\.bbl$" "\\.bcf$" "\\.blg$" "\\.run.xml$" "\\.fls$" "\\.tdo$" "\\.log$" "\\.out$" "\\.synctex.gz$" "\\.fdb_latexmk$"))
      (shell :variables
             shell-default-height 30
@@ -132,7 +131,8 @@ values."
     ;; org-ql [https://github.com/alphapapa/org-ql]
     org-fancy-priorities
     (olivetti :variables ;; easy reading org files (with margin)
-              olivetti-lighter "⌨")
+              olivetti-lighter "⌨"
+              olivetti-body-width 0.8) ;; TODO doesn't work
     org-analyzer ;; for fancy timetracking report
     org-mru-clock ;; show most recent task for quick timetracking
 
@@ -420,11 +420,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (add-hook 'org-mode-hook (lambda () (set-fill-column 103)))
   (add-hook 'org-mode-hook #'turn-on-auto-fill)
-  (add-hook 'org-mode-hook 'olivetti-mode)
   (add-hook 'org-clock-out-hook #'save-buffer) ;; save before writing log note :/
   (add-hook 'org-clock-in-hook #'save-buffer)
 
+  ;; olivetti-mode
+  (setq olivetti-body-width 120)
+  (add-hook 'org-mode-hook 'olivetti-mode)
   (add-hook 'LaTeX-mode-hook 'olivetti-mode)
+  (add-hook 'pdf-view-mode-hook 'olivetti-mode)
 
   ;; (add-hook 'tuareg-mode-hook (lambda () (merlin-xref-backend)))
 
@@ -465,8 +468,8 @@ you should place your code here."
 
   (require 'org-protocol)
   (require 'org-gcal) ;; TODO: try to replace with use-package
-  (setq org-gcal-client-id "CENSORED_CONTENT"
-        org-gcal-client-secret "CENSORED_CONTENT")
+  ;; (setq org-gcal-client-id "CENSORED_CONTENT"
+  ;;       org-gcal-client-secret "CENSORED_CONTENT")
 
   ;; NOTE: for some reasons configuration via `dotspacemacs/emacs-custom-settings' isn't working
   ;; after some package update
@@ -542,6 +545,8 @@ you should place your code here."
   ;; doc: https://github.com/unhammer/org-mru-clock
   (use-package org-mru-clock
     :ensure t
+    :custom
+       (org-mru-clock-how-many 40)
     :bind* (("M-m a o C m" . org-mru-clock-in)
             ("M-m a o C s" . org-mru-clock-select-recent-task))
     :commands org-mru-clock--completing-read ;; for org-clock-in-past
@@ -691,6 +696,7 @@ you should place your code here."
   (smart-tabs-insinuate 'c)
 )
 
+;; TODO: move stable configurations into :variables
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
