@@ -632,6 +632,46 @@ you should place your code here."
   )
   (global-set-key (kbd "M-RET r s") 'org-roam-switch)
 
+  ;; Helm-bibtex
+
+  (setq bibtex-completion-bibliography '("CENSORED_PATH")
+        bibtex-completion-library-path '("CENSORED_PATH")
+        bibtex-completion-pdf-field "File"
+        bibtex-completion-find-additional-pdfs t
+        bibtex-completion-additional-search-fields '(tags))
+  (with-eval-after-load "helm-bibtex"
+    (defun my-bibtex-completion-open-url-or-doi (keys)
+      "Copy of from helm-bibtex"
+      (dolist (key keys)
+        (let* ((entry (bibtex-completion-get-entry key))
+               (url    (bibtex-completion-get-value "url" entry))
+               (urlpdf (bibtex-completion-get-value "urlpdf" entry))
+               (doi (bibtex-completion-get-value "doi" entry))
+               (browse-url-browser-function
+                (or bibtex-completion-browser-function
+                    browse-url-browser-function)))
+          (if urlpdf
+              (browse-url urlpdf)
+          (if url
+              (browse-url url)
+          (if doi (browse-url
+                   (s-concat "http://dx.doi.org/" doi))
+            (message "No URL or DOI found for this entry: %s"
+                     key)))))))
+    (defun my-bibtex-completion-open-any (keys)
+      "Copy of from helm-bibtex"
+      (bibtex-completion-open-pdf keys 'my-bibtex-completion-open-url-or-doi))
+    (helm-bibtex-helmify-action my-bibtex-completion-open-any my-helm-bibtex-open-any)
+    (helm-delete-action-from-source "Open PDF, URL or DOI" helm-source-bibtex)
+    (helm-add-action-to-source "Open PDF File, PDF URL, URL or DOI" 'my-helm-bibtex-open-any helm-source-bibtex 0)
+    )
+
+  ;; spell checking
+  (with-eval-after-load "ispell"
+    (setq ispell-program-name "hunspell")
+    (ispell-set-spellchecker-params)
+    (ispell-hunspell-add-multi-dic "en_US,ru_RU")
+    (setq ispell-dictionary "en_US,ru_RU"))
 
   ;; (add-hook 'ocaml-mode-hook #'lsp)
   (add-hook 'tuareg-mode-hook #'tuareg-opam-update-env)
