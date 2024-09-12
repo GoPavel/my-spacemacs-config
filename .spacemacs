@@ -161,7 +161,7 @@ values."
     ;; smart-tabs-mode
     (smart-tabs-mode :location (recipe :fetcher github
                                        :repo "miketz/smarttabs"
-                                       :branch "mine"))
+                                       :branch "master"))
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
