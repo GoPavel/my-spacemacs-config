@@ -525,6 +525,23 @@ you should place your code here."
   (global-prettify-symbols-mode +1)
 
   ;;; Org-mode
+  (with-eval-after-load 'org
+      (setq org-tag-faces '(("grammar" . "magenta3")
+                            ("listening" . "green4")
+                            ("reading" . "firebrick")
+                            ("vocab" . "DodgerBlue3")
+                            ("arzamas" . "Gray")
+                            ("reread" :foreground "White" :slant italic)
+                            ("relation" . "Red")
+                            ("refl" . "PowderBlue")
+                            ("communication" . "DeepSkyBlue")
+
+
+                            ("health" . "Chartreuse")
+                            ("work" . "DarkOrange")
+                            ("issue" . "red")))
+    )
+
   (use-package org-fancy-priorities
     :ensure t
     :hook
@@ -864,20 +881,6 @@ This function is called at the very end of Spacemacs initialization."
      (tags-tree . local)))
  '(org-startup-truncated nil)
  '(org-super-agenda-groups nil)
- '(org-tag-faces
-   '(("grammar" . "magenta3")
-     ("listening" . "green4")
-     ("reading" . "firebrick")
-     ("vocab" . "DodgerBlue3")
-     ("arzamas" . "Gray")
-     ("reread" :foreground "White" :slant italic)
-     ("relation" . "Red")
-     ("refl" . "PowderBlue")
-     ("communication" . "DeepSkyBlue")
-
-     ("brain_fog" . "White")
-     ("health" . "Chartreuse")
-     ("issue" . "red")))
  '(org-todo-keyword-faces
    '(("DRAFT" . "#7d3c98")
      ("WORK" . "#ec7063")
@@ -885,8 +888,11 @@ This function is called at the very end of Spacemacs initialization."
      ("OPEN" . "#f1c40f")
      ("FOG" . "#D1CBCB")
      ("INPROGRESS" . "#0098DD")
+     ("PROG" . "#0098DD")
      ("SUSPEND" . "#9F7EFE")
+     ("STOP" . "#9F7EFE")
      ("DONE" . "#50A14F")
+     ("WANT" . "salmon")
      ("LONGTERM" . "DeepPink1")
      ("WAIT" . "#00bfff")
      ("ACTIVE" . "red1")
