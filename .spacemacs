@@ -624,7 +624,14 @@ you should place your code here."
          (goto-char (marker-position marker))
          (org-clock-in nil start)))
       (org-clock-out nil nil (time-add start (seconds-to-time seconds)))
-      ))
+      )
+     ;; resume interrupted task (workaround: namely reopen it)
+     (when (marker-buffer org-clock-interrupted-task)
+       (with-current-buffer (org-base-buffer (marker-buffer org-clock-interrupted-task))
+         (org-with-wide-buffer
+          (goto-char (marker-position org-clock-interrupted-task))
+          (org-clock-in))))
+     )
   (global-set-key (kbd "M-m a o C p") 'org-clock-in-past)
 
   ;; Org-roam
