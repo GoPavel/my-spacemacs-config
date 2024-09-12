@@ -672,26 +672,32 @@ you should place your code here."
   )
   (global-set-key (kbd "M-RET r s") 'org-roam-switch)
 
-  ;; Helm-bibtex
 
+  ;; Helm-bibtex
+  ;; TODO: add action to download pdf and store in the folder + insert `File = {}' field
   (setq bibtex-completion-bibliography '("CENSORED_PATH")
         bibtex-completion-library-path '("CENSORED_PATH")
         bibtex-completion-pdf-field "File"
         bibtex-completion-find-additional-pdfs t
-        bibtex-completion-additional-search-fields '(tags))
+        bibtex-completion-additional-search-fields '(tags)
+        bibtex-completion-pdf-open-function 'helm-open-file-with-default-tool
+        )
+  (global-set-key (kbd "M-m b f") 'helm-bibtex)
   (with-eval-after-load "helm-bibtex"
     (defun my-bibtex-completion-open-url-or-doi (keys)
       "Copy of from helm-bibtex"
       (dolist (key keys)
         (let* ((entry (bibtex-completion-get-entry key))
                (url    (bibtex-completion-get-value "url" entry))
-               (urlpdf (bibtex-completion-get-value "urlpdf" entry))
+               (urlpdf (bibtex-completion-get-value "pdf" entry))
                (doi (bibtex-completion-get-value "doi" entry))
                (browse-url-browser-function
                 (or bibtex-completion-browser-function
                     browse-url-browser-function)))
           (if urlpdf
-              (browse-url urlpdf)
+              (let* ((browse-url-browser-function
+                      (lambda (url _) (start-process "Okular" "*okular" "okular" url))))
+                (browse-url urlpdf))
           (if url
               (browse-url url)
           (if doi (browse-url
