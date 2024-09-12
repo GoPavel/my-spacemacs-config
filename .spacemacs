@@ -135,6 +135,12 @@ values."
               olivetti-body-width 0.8) ;; TODO doesn't work
     org-analyzer ;; for fancy timetracking report
     org-mru-clock ;; show most recent task for quick timetracking
+    (clocktable-by-tag
+     :location (recipe :fetcher github :repo "cashpw/clocktable-by-tag"
+                       :branch "main"))
+    (clocktable-by-category
+     :location (recipe :fetcher github :repo "cashpw/clocktable-by-category"
+                       :branch "main"))
 
     ;; Languages supplement
     lsp-mode
@@ -552,6 +558,10 @@ you should place your code here."
     :commands org-mru-clock--completing-read ;; for org-clock-in-past
     :autoload (org-mru-clock-to-history)
     )
+  (use-package clocktable-by-tag
+    :after org) ;; TODO spread it
+  (use-package clocktable-by-category
+    :after org)
 
   (defun prompt-link ()
     "Prompt link"
