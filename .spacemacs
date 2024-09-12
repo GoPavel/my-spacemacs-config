@@ -114,6 +114,7 @@ values."
     ssh-agency
     dashboard
     pinentry ;; for git ssh
+    ;; exec-path-from-shell ;; ensure env as in shell
 
     ;; Fancy stuff
     all-the-icons
@@ -785,9 +786,7 @@ This function is called at the very end of Spacemacs initialization."
      ("undefined" . "⊥")
      ("." "∘" haskell-font-lock-dot-is-not-composition)))
  '(haskell-process-type 'stack-ghci)
-;; '(helm-ag-base-command "rg --vimgrep --no-heading --smart-case")
  '(helm-completion-style 'emacs)
-;; '(helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number %s %s %s")
  '(helm-mode t)
  '(hindent-style nil)
  '(hl-todo-keyword-faces
@@ -832,7 +831,7 @@ This function is called at the very end of Spacemacs initialization."
      ("tho" "~/.emacs.d/private/icons/bulb.png" nil nil :ascent center)))
  '(org-agenda-current-time-string "ᐊ---------------")
  '(org-agenda-files
-   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
+   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
  '(org-agenda-prefix-format
    '((agenda . " %-3i %-12:c%?-12t% s")
      (todo . " %-3i %-12:c")
