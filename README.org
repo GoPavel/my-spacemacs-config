@@ -1,23 +1,7 @@
 * Spacemacs-settings
-  
+
   A drawer with my spacemacs configuration: cheat sheets, notes, todos and so on.
 
-** Table of content
-   - TODOs
-   - Cheat sheet
-   - Setup hints
-** TODOs
-*** General
-  - [ ] setting up haskell layer
-  - [ ] review setting up GPG key
-    - add =pinentry-start=
-  - [X] fix rewrite =neo-vc-integration= ([[https://github.com/syl20bnr/spacemacs/issues/10504][issue]])
-  - [ ] add hook for =tuareg-update && restart-lsp-server=
-  - [ ] saving several session layouts to quickly resume workspaces after reboot.
-        (maybe it should relay on projectile)
-  - [ ] backup: add saving =.emaacs.d/.cache/bookmarks=
-  - [ ] backup: add saving private lines into encrypted patch
-  - [ ] backup: add saving/copying private icons
 ** Cheat sheet
 *** Basic
     - =M-x command= call command by its name
@@ -65,7 +49,6 @@
       desktop windows. Also open server accumulate too many open buffers that disturb navigation by
       the =M-m b b= stroke.
     - setup =initial-choice-buffer= (doesn't work in =master=)
-
 *** Neotree
     - install fonts =M-x all-the-icons-install-fonts=
     - added hook in =user-conifg= for sustaining state of variables =neo-vs-integration= (maybe it'll
@@ -76,16 +59,21 @@
 **** FStar
      - [[https://github.com/FStarLang/fstar-layer][Follow install instruction from README]]
 
+** TODOs
+*** General
+  - [ ] setting up haskell layer
+  - [ ] review setting up GPG key
+    - add =pinentry-start=
+  - [X] fix rewrite =neo-vc-integration= ([[https://github.com/syl20bnr/spacemacs/issues/10504][issue]])
+  - [ ] add hook for =tuareg-update && restart-lsp-server=
+  - [ ] saving several session layouts to quickly resume workspaces after reboot.
+        (maybe it should relay on projectile)
+  - [ ] backup: add saving =.emacs.d/.cache/bookmarks=
+  - [ ] backup: add saving private lines into encrypted patch
+  - [ ] backup: add saving/copying private icons
+  - [X] org-roam: profiles
+  - [X] convenient clock in the past
 
-
-** Org-roam
-    BAD:
-    + several profiles is not working properly
-    + showing backlinks work not so smooth and storing in db
-      (this can be solved by calling =org-super-links-convert-to-super= after inserting link)
-    GOOD:
-    + fast finding nodes
-    + nice ui graph
 
 * Notes
 
