@@ -129,7 +129,6 @@ values."
              pomidor-seconds 1500
              pomidor-sound-tick "nil"
              pomidor-sound-tack "nil")
-    ;; org-ql [https://github.com/alphapapa/org-ql]
     org-fancy-priorities
     (olivetti :variables ;; easy reading org files (with margin)
               olivetti-lighter "⌨"
@@ -142,6 +141,8 @@ values."
     (clocktable-by-category
      :location (recipe :fetcher github :repo "cashpw/clocktable-by-category"
                        :branch "main"))
+    org-ql
+    helm-org-ql
 
     ;; Languages supplement
     lsp-mode
@@ -457,6 +458,7 @@ you should place your code here."
   (global-set-key (kbd "C-S-t") 'tab-new)
   (global-set-key (kbd "M-m C-/") 'helm-do-grep-ag)
   (global-set-key (kbd "C-c C-<tab>") 'org-force-cycle-archived)
+  (global-set-key (kbd "M-<return> /") 'helm-org-ql)
 
   ;; enable unicode emoji
   (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
