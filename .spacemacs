@@ -541,6 +541,7 @@ you should place your code here."
                             ("health" . "Chartreuse")
                             ("work" . "DarkOrange")
                             ("issue" . "red")))
+      (setq  org-duration-format '(("h") ("min")))
     )
 
   (use-package org-fancy-priorities
