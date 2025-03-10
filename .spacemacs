@@ -133,7 +133,9 @@ values."
     (olivetti :variables ;; easy reading org files (with margin)
               olivetti-lighter "⌨"
               olivetti-body-width 0.8) ;; TODO doesn't work
-    org-analyzer ;; for fancy timetracking report
+    org-analyzer ;; browser UI for time records
+                 ;; TODO: support list of files
+                 ;; TODO: support color palette for tags
     org-mru-clock ;; show most recent task for quick timetracking
     (clocktable-by-tag
      :location (recipe :fetcher github :repo "cashpw/clocktable-by-tag"
@@ -852,7 +854,6 @@ This function is called at the very end of Spacemacs initialization."
      (tags priority-down category-keep timestamp-down alpha-up)
      (search category-keep timestamp-down alpha-up)))
  '(org-agenda-start-with-log-mode '(closed))
- '(org-analyzer-org-directory "CENSORED_PATH")
  '(org-archive-location "::* Archive")
  '(org-clock-idle-time 10)
  '(org-columns-default-format "%25ITEM %TODO %6Effort %6CLOCKSUM %TAGS")
