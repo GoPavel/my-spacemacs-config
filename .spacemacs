@@ -114,7 +114,7 @@ values."
     ssh-agency
     dashboard
     pinentry ;; for git ssh
-    ;; exec-path-from-shell ;; ensure env as in shell
+    exec-path-from-shell ;; ensure env as in shell
 
     ;; Fancy stuff
     all-the-icons
@@ -725,7 +725,7 @@ you should place your code here."
     (setq ispell-dictionary "en_US,ru_RU"))
 
   ;; (add-hook 'ocaml-mode-hook #'lsp)
-  (add-hook 'tuareg-mode-hook #'tuareg-opam-update-env)
+  ;; (add-hook 'tuareg-mode-hook #'tuareg-opam-update-env)
   (add-hook 'tuareg-mode-hook #'lsp)
   (add-hook 'elm-mode-hook #'lsp)
 
