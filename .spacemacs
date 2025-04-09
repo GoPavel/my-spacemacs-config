@@ -464,7 +464,8 @@ you should place your code here."
   (global-set-key (kbd "C-S-t") 'tab-new)
   (global-set-key (kbd "M-m C-/") 'helm-do-grep-ag)
   (global-set-key (kbd "C-c C-<tab>") 'org-force-cycle-archived)
-  (global-set-key (kbd "M-<return> /") 'helm-org-ql)
+  ;; (global-set-key (kbd "M-<return> /") 'helm-org-ql) conflict with M-RET
+  (global-set-key (kbd "M-m f j") 'neotree-find)
 
   ;; enable unicode emoji
   (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
