@@ -44,6 +44,7 @@ values."
                     unicode-fonts-ligature-modes '(text-mode))
      ;; auto-completion ;; use pure company-mode instead
      git
+     nixos
      (org :variables
           org-enable-roam-support t
           org-enable-roam-ui t
