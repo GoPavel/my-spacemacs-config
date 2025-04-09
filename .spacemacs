@@ -91,13 +91,13 @@ values."
           company-idle-delay nil)
 
      lsp
-     (haskell :variables
-              haskell-completion-backend 'lsp
+     ;; (haskell :variables
+     ;;         haskell-completion-backend 'lsp
               ;; haskell-process-type 'stack-ghci
               ;; haskell-enable-hindent-style "fundamental"
               ;; haskell-process-suggest-remove-import-lines nil ;; TODO WTF? 
               ;; lsp-haskell-process-path-hie "haskell-language-server-wrapper"
-              )
+     ;;         )
      ;; TODO hindent, structured-haskell-mode
      ;; TODO better-defaults
 
