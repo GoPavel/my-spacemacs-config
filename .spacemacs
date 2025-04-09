@@ -718,7 +718,7 @@ you should place your code here."
         bibtex-completion-library-path '("CENSORED_PATH")
         bibtex-completion-pdf-field "File"
         bibtex-completion-find-additional-pdfs t
-        bibtex-completion-additional-search-fields '(tags)
+        bibtex-completion-additional-search-fields '(tags ids)
         bibtex-completion-pdf-open-function 'helm-open-file-with-default-tool
         )
   (global-set-key (kbd "M-m b f") 'helm-bibtex)
