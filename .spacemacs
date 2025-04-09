@@ -160,9 +160,8 @@ values."
 
     lsp-haskell
     ;;  structured-haskell-mode
-    (flycheck-pos-tip :variables
-                      flycheck-pos-tip-timeout 20)
-    (flycheck-inline)
+    flycheck-posframe ;; to show diagnostic in tooltip
+    flycheck-pos-tip  ;; for console mode
 
     ;; (ligo-mode :location local) ;; for debug
     ;; ligo-mode
@@ -779,9 +778,28 @@ you should place your code here."
   (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
   (add-hook 'tuareg-mode-hook (lambda() (electric-indent-mode 0)))
 
-  ;; (with-eval-after-load 'flycheck (flycheck-pos-tip-mode))
+  (use-package flycheck-posframe
+    :ensure t
+    :after flycheck
+    :config (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
+    :custom
+      (flycheck-posframe-position 'window-top-right-corner)
+      (flycheck-posframe-border-width 5)
+      (flycheck-posframe-warning-prefix "\u26a0 ")
+      (flycheck-posframe-error-prefix "\u274c ")
+    :custom-face
+      (flycheck-posframe-error-face ((t (:inherit flycheck-error-list-error))))
+      (flycheck-posframe-warning-face ((t (:inherit flycheck-error-list-warning))))
+      (flycheck-posframe-info-face ((t (:inherit flycheck-error-list-info))))
+      (flycheck-posframe-border-face ((t (:inherit vertical-border))))
+    )
+
+  ;; TODO: doesn't work, restart flycheck-pos-tip-mode works
   (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+    (add-hook 'flycheck-mode-hook
+              (lambda ()
+                (unless (display-graphic-p) flycheck-pos-tip-mode))))
+
 
   (smart-tabs-insinuate 'c)
 )
@@ -828,6 +846,7 @@ This function is called at the very end of Spacemacs initialization."
  '(doc-view-resolution 300)
  '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-display-errors-delay 1.7)
  '(flycheck-python-flake8-executable "python3")
  '(flycheck-python-pycompile-executable "python3")
  '(flycheck-python-pylint-executable "python3")
