@@ -57,7 +57,9 @@ values."
               neo-window-width 28
               neo-vc-integration '(face)
               neo-theme 'icons
-              neo-hidden-regexp-list '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$" "^Makefile.coq$" "^Makefile.coq.conf$" "\\.aux$" "\\.bbl$" "\\.bcf$" "\\.blg$" "\\.run.xml$" "\\.fls$" "\\.tdo$" "\\.log$" "\\.out$" "\\.synctex.gz$" "\\.fdb_latexmk$"))
+              neo-hidden-regexp-list '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" "\\.vo$" "\\.glob$" "\\.vok$" "\\.vos$" "^Makefile.coq$" "^Makefile.coq.conf$" "\\.aux$" "\\.bbl$" "\\.bcf$" "\\.blg$" "\\.run.xml$" "\\.fls$" "\\.tdo$" "\\.log$" "\\.out$" "\\.synctex.gz$" "\\.fdb_latexmk$")
+              neo-autorefresh t
+              neo-smart-open t)
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
