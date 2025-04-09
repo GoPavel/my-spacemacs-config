@@ -158,6 +158,9 @@ values."
 
     lsp-haskell
     ;;  structured-haskell-mode
+    (flycheck-pos-tip :variables
+                      flycheck-pos-tip-timeout 20)
+    (flycheck-inline)
 
     ;; (ligo-mode :location local) ;; for debug
     ;; ligo-mode
@@ -740,6 +743,10 @@ you should place your code here."
   (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
   (add-hook 'tuareg-mode-hook (lambda() (electric-indent-mode 0)))
 
+  ;; (with-eval-after-load 'flycheck (flycheck-pos-tip-mode))
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+
   (smart-tabs-insinuate 'c)
 )
 
@@ -785,7 +792,6 @@ This function is called at the very end of Spacemacs initialization."
  '(doc-view-resolution 300)
  '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
- '(flycheck-pos-tip-timeout 20)
  '(flycheck-python-flake8-executable "python3")
  '(flycheck-python-pycompile-executable "python3")
  '(flycheck-python-pylint-executable "python3")
