@@ -727,22 +727,28 @@ you should place your code here."
       "Copy of from helm-bibtex"
       (dolist (key keys)
         (let* ((entry (bibtex-completion-get-entry key))
-               (url    (bibtex-completion-get-value "url" entry))
-               (urlpdf (bibtex-completion-get-value "pdf" entry))
+               (url   (bibtex-completion-get-value "url" entry))
+               (pdf (bibtex-completion-get-value "pdf" entry))
                (doi (bibtex-completion-get-value "doi" entry))
                (browse-url-browser-function
                 (or bibtex-completion-browser-function
                     browse-url-browser-function)))
-          (if urlpdf
-              (let* ((browse-url-browser-function
-                      (lambda (url _) (start-process "Okular" "*okular" "okular" url))))
-                (browse-url urlpdf))
-          (if url
-              (browse-url url)
-          (if doi (browse-url
-                   (s-concat "http://dx.doi.org/" doi))
-            (message "No URL or DOI found for this entry: %s"
-                     key)))))))
+          (cond
+           (pdf
+            (cond ((string-match-p "dl.acm.org" pdf)
+                   (let* (;; (cookies (f-read-text "~/.emacs.d/private/local/acm_cookies.txt"))
+                          (file (concat "CENSORED_PATH" "temp.pdf")))
+                     (with-temp-buffer
+                     ;; (shell-command (concat "curl '" pdf "' " cookies " --output '" file "'"));)
+                       (shell-command (concat "docker run --rm lwthiker/curl-impersonate:0.6-chrome curl_chrome110 " pdf " > " file) t))
+                     (start-process "Okular" "*okular" "okular" file))
+                   )
+                  (t (let* ((browse-url-browser-function (lambda (url _) (start-process "Okular" "*okular" "okular" url))))
+                       (browse-url url)))))
+           (url (browse-url url))
+           (doi (browse-url (s-concat "http://dx.doi.org/" doi)))
+           (t (message "No URL or DOI found for this entry: %s" key))))))
+
     (defun my-bibtex-completion-open-any (keys)
       "Copy of from helm-bibtex"
       (bibtex-completion-open-pdf keys 'my-bibtex-completion-open-url-or-doi))
