@@ -488,12 +488,6 @@ you should place your code here."
   ;; (setq org-gcal-client-id "CENSORED_CONTENT"
   ;;       org-gcal-client-secret "CENSORED_CONTENT")
 
-  ;; NOTE: for some reasons configuration via `dotspacemacs/emacs-custom-settings' isn't working
-  ;; after some package update
-  ;;   (require 'dashboard)
-;;   (dashboard-setup-startup-hook)
-;;   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-
   (use-package dashboard
     :ensure t
     :custom
@@ -505,18 +499,6 @@ you should place your code here."
          (buffer-string)
          "
 " t)))
-    (dashboard-heading-icons
-      '((recents . "history")
-        (bookmarks . "bookmark")
-        (agenda . "calendar")
-        (projects . "rocket")
-        (registers . "database")))
-    (dashboard-item-generators
-      '((recents . dashboard-insert-recents)
-        (bookmarks . dashboard-insert-bookmarks)
-        (projects . dashboard-insert-projects)
-        (agenda . dashboard-insert-agenda)
-        (registers . dashboard-insert-registers)))
     (dashboard-items '((recents . 3) (bookmarks . 17) (projects . 3)))
     (dashboard-set-file-icons t)
     (dashboard-set-heading-icons t)
