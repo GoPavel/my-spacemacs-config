@@ -1,4 +1,3 @@
-
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
@@ -52,7 +51,8 @@ values."
      spell-checking
      syntax-checking
      version-control
-     emacs-lisp
+     (emacs-lisp :variables
+                 emacs-lisp-format-on-save nil)
      (neotree :variables
               neo-window-width 28
               neo-vc-integration '(face)
@@ -643,27 +643,26 @@ you should place your code here."
           ;;    "\n"
           ;;    "* DRAFT %? %^G\n")
           ;;  )
-	        ("p" "Protocol" plain (file "CENSORED_PATH")
+          ("p" "Protocol" plain (file "CENSORED_PATH")
            "* %? [[%:link][%:description]] %^G\nCaptured On: %U\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-	        ("L" "Protocol Link" plain (file "CENSORED_PATH")
+          ("L" "Protocol Link" plain (file "CENSORED_PATH")
            "* %? [[%:link][%:description]] %^G\nCaptured On: %U")
-          ("b" "Web bookmark" plain
+          ("b" "Bookmark (Interest)" plain
            (file "CENSORED_PATH")
            "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
-          ("s" "Science (web) bookmark" plain
-            (file "CENSORED_PATH")
+          ("s" "Bookmark (Science)" plain
+           (file "CENSORED_PATH")
             "* TODO [[%(call-interactively #'prompt-link)][%^{PROMPT}] %^G\n%^{AUTHOR}p")
-          ("n" "News bookmark" plain
-           (file "CENSORED_PATH") ;; TODO
+          ("n" "Bookmark (News)" plain
+           (file "CENSORED_PATH")
            "* TODO [[%(call-interactively #'prompt-link)][%?]]\n")
           ("o" "Book" entry
            (file+headline "CENSORED_PATH" prompt-heading)
            "\n** TODO %?\n") ;; TODO
-        ;; ("todo" "TODO" entry))
+          ;; ("todo" "TODO" entry))
           )
   )
   (add-hook 'org-capture-prepare-finalize-hook #'org-id-get-create)
-  (setq neo-vc-integration '(face))
 
   ;; Org-clocking
   (defun org-clock-in-past ()
@@ -837,9 +836,7 @@ This function is called at the very end of Spacemacs initialization."
    '(opts-or-alts required-fields numerical-fields realign unify-case sort-fields))
  '(bibtex-generate-url-list
    '((("url" . ".*:.*"))
-     (("doi" . "10\\.[0-9]+/.+")
-      "http://dx.doi.org/%s"
-      ("doi" ".*" 0))
+     (("doi" . "10\\.[0-9]+/.+") "http://dx.doi.org/%s" ("doi" ".*" 0))
      (("pdf" . ".*:.*"))))
  '(debugger-batch-max-lines 40)
  '(desktop-path '("~/.emacs.d/.cache/desktop" "~/.emacs.d/" "~"))
@@ -904,7 +901,16 @@ This function is called at the very end of Spacemacs initialization."
      ("tho" "~/.emacs.d/private/icons/bulb.png" nil nil :ascent center)))
  '(org-agenda-current-time-string "ᐊ---------------")
  '(org-agenda-files
-   '("CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH" "CENSORED_PATH"))
+   '("CENSORED_PATH"
+     "CENSORED_PATH"
+     "CENSORED_PATH"
+     "CENSORED_PATH"
+     "CENSORED_PATH"
+     "CENSORED_PATH"
+     "CENSORED_PATH"
+     "CENSORED_PATH"
+     "CENSORED_PATH"
+     "CENSORED_PATH"))
  '(org-agenda-prefix-format
    '((agenda . " %-3i %-12:c%?-12t% s")
      (todo . " %-3i %-12:c")
@@ -970,11 +976,21 @@ This function is called at the very end of Spacemacs initialization."
  '(prettify-symbols-unprettify-at-point t)
  '(python-shell-interpreter "python")
  '(safe-local-variable-values
-   '((typescript-backend . tide)
-     (typescript-backend . lsp)
-     (javascript-backend . tide)
-     (javascript-backend . tern)
-     (javascript-backend . lsp)))
+   '((TeX-Master . "../main") (TeX-Master . "main")
+     (eval progn (setenv "TEXINPUTS" (format ".:../styles//:../sav-science//:"))
+           (setenv "BSTINPUTS" (format ".:../styles//:")))
+     (eval progn (setenv "TEXINPUTS" (format ".:../styles//:../sav-science//:"))
+           (setenv "BSTINPUTS" (format ".:../styles//:%s" (getenv "BSTINPUTS"))))
+     (eval progn
+           (setenv "TEXINPUTS"
+                   (format ".:../styles//:../sav-science//:%s"
+                           (getenv "TEXINPUTS")))
+           (setenv "BSTINPUTS" (format ".:../styles//:%s" (getenv "BSTINPUTS"))))
+     (eval setenv "TEXINPUTS"
+           (format ".:../styles//:../sav-science//:%s" (getenv "TEXINPUTS")))
+     (Tex-master . "notes") (typescript-backend . tide)
+     (typescript-backend . lsp) (javascript-backend . tide)
+     (javascript-backend . tern) (javascript-backend . lsp)))
  '(sh-basic-offset 2)
  '(spacemacs-yank-indent-threshold 0)
  '(tab-bar-mode t)
@@ -984,26 +1000,11 @@ This function is called at the very end of Spacemacs initialization."
  '(tuareg-default-indent 4)
  '(tuareg-opam-insinuate t)
  '(warning-suppress-log-types
-   '((comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)))
+     '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
  '(warning-suppress-types
-   '((comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)
-     (comp)))
- '(word-wrap t))
+     '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
+   '(word-wrap t)
+   '(yas-global-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
