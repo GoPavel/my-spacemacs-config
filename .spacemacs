@@ -838,6 +838,8 @@ This function is called at the very end of Spacemacs initialization."
      ("undefined" . "⊥")
      ("." "∘" haskell-font-lock-dot-is-not-composition)))
  '(haskell-process-type 'stack-ghci)
+ '(helm-ag-base-command "rg --no-heading --line-number --color never")
+ '(helm-ag-success-exit-status '(0 2))
  '(helm-completion-style 'emacs)
  '(helm-mode t)
  '(hindent-style nil)
