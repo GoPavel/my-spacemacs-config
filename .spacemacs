@@ -826,11 +826,11 @@ This function is called at the very end of Spacemacs initialization."
  '(flycheck-python-pylint-executable "python3")
  '(global-hl-todo-mode t)
  '(grep-find-ignored-directories
-   '("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}"))
+   '("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs"
+     "{arch}"))
  '(haskell-font-lock-symbols t)
  '(haskell-font-lock-symbols-alist
-   '(("\\" . "λ")
-     ("undefined" . "⊥")
+   '(("\\" . "λ") ("undefined" . "⊥")
      ("." "∘" haskell-font-lock-dot-is-not-composition)))
  '(haskell-process-type 'stack-ghci)
  '(helm-ag-base-command "rg --no-heading --line-number --color never")
@@ -839,36 +839,27 @@ This function is called at the very end of Spacemacs initialization."
  '(helm-mode t)
  '(hindent-style nil)
  '(hl-todo-keyword-faces
-   '(("REVIEW" . "#7cb8bb")
-     ("HOLD" . "#d0bf8f")
-     ("TODO" . "#cc9393")
-     ("NEXT" . "#dca3a3")
-     ("THEM" . "#dc8cc3")
-     ("PROG" . "#7cb8bb")
-     ("OKAY" . "#7cb8bb")
-     ("DONT" . "#5f7f5f")
-     ("FAIL" . "#8c5353")
-     ("DONE" . "#afd8af")
-     ("NOTE" . "#d0bf8f")
-     ("KLUDGE" . "#d0bf8f")
-     ("HACK" . "#d0bf8f")
-     ("TEMP" . "#d0bf8f")
-     ("FIXME" . "orange2")
-     ("XXX+" . "#cc9393")
-     ("\\?\\?\\?+" . "#cc9393")
-     ("ASK" . "cyan2")
-     ("MAYBE" . "orchid")
-     ("BUG" . "red2")
-     ("CHECK" . "#cdcd00")
-     ("FEATURE" . "wheat")
-     ("DEBUG" . "grey")
-     ("EASY" . "dark orange")
+   '(("REVIEW" . "#7cb8bb") ("HOLD" . "#d0bf8f") ("TODO" . "#cc9393")
+     ("NEXT" . "#dca3a3") ("THEM" . "#dc8cc3") ("PROG" . "#7cb8bb")
+     ("OKAY" . "#7cb8bb") ("DONT" . "#5f7f5f") ("FAIL" . "#8c5353")
+     ("DONE" . "#afd8af") ("NOTE" . "#d0bf8f") ("KLUDGE" . "#d0bf8f")
+     ("HACK" . "#d0bf8f") ("TEMP" . "#d0bf8f") ("FIXME" . "orange2")
+     ("XXX+" . "#cc9393") ("\\?\\?\\?+" . "#cc9393") ("ASK" . "cyan2")
+     ("MAYBE" . "orchid") ("BUG" . "red2") ("CHECK" . "#cdcd00")
+     ("FEATURE" . "wheat") ("DEBUG" . "grey") ("EASY" . "dark orange")
      ("HARD" . "red2")))
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(lsp-client-packages
-   '(ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte))
- '(lsp-idle-delay 1)
+   '(ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal
+          lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm
+          lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript
+          lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java
+          lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals
+          lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms
+          lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex
+          lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript
+          lsp-xml lsp-yaml lsp-sqls lsp-svelte))
  '(lsp-latex-build-executable "xelatex")
  '(magit-no-confirm nil)
  '(org-agenda-category-icon-alist
@@ -889,10 +880,8 @@ This function is called at the very end of Spacemacs initialization."
      "CENSORED_PATH"
      "CENSORED_PATH"))
  '(org-agenda-prefix-format
-   '((agenda . " %-3i %-12:c%?-12t% s")
-     (todo . " %-3i %-12:c")
-     (tags . " %-3i %-12:c")
-     (search . " %-3i %-12:c")))
+   '((agenda . " %-3i %-12:c%?-12t% s") (todo . " %-3i %-12:c")
+     (tags . " %-3i %-12:c") (search . " %-3i %-12:c")))
  '(org-agenda-sorting-strategy
    '((agenda habit-down time-up priority-down category-keep)
      (todo priority-down category-keep alpha-up)
@@ -904,19 +893,14 @@ This function is called at the very end of Spacemacs initialization."
  '(org-columns-default-format "%25ITEM %TODO %6Effort %6CLOCKSUM %TAGS")
  '(org-export-date-timestamp-format nil)
  '(org-file-apps
-   '((auto-mode . emacs)
-     (directory . emacs)
-     ("\\.mm\\'" . default)
-     ("\\.x?html?\\'" . default)
-     ("\\.pdf\\'" . default)))
+   '((auto-mode . emacs) (directory . emacs) ("\\.mm\\'" . default)
+     ("\\.x?html?\\'" . default) ("\\.pdf\\'" . default)))
  '(org-fold-show-context-detail
-   '((agenda . local)
-     (bookmark-jump . lineage)
-     (isearch . lineage)
-     (default . ancestors)
-     (tags-tree . local)))
+   '((agenda . local) (bookmark-jump . lineage) (isearch . lineage)
+     (default . ancestors) (tags-tree . local)))
  '(org-format-latex-options
-   '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+   '(:foreground default :background default :scale 1.5 :html-foreground "Black"
+                 :html-background "Transparent" :html-scale 1.0 :matchers
                  ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-gcal-fetch-file-alist
    '(("pavel.golovin@serokell.io" . "CENSORED_PATH")
