@@ -93,15 +93,6 @@ values."
           company-idle-delay nil)
 
      lsp
-     ;; (haskell :variables
-     ;;         haskell-completion-backend 'lsp
-              ;; haskell-process-type 'stack-ghci
-              ;; haskell-enable-hindent-style "fundamental"
-              ;; haskell-process-suggest-remove-import-lines nil ;; TODO WTF? 
-              ;; lsp-haskell-process-path-hie "haskell-language-server-wrapper"
-     ;;         )
-     ;; TODO hindent, structured-haskell-mode
-     ;; TODO better-defaults
 
      ;; Theorem provers
      ;; lean
@@ -150,7 +141,9 @@ values."
     helm-org-ql
 
     ;; Languages supplement
-    lsp-mode
+    (lsp-mode
+     :variables lsp-idle-delay 1
+     )
 
     ;; LSP testing
     ert-runner
@@ -159,7 +152,8 @@ values."
     ;; magic-latex-buffer
 
     lsp-haskell
-    ;;  structured-haskell-mode
+    haskell-mode ;; avoid using haskell layer since it's conflicting with lsp-mode
+
     flycheck-posframe ;; to show diagnostic in tooltip
     flycheck-pos-tip  ;; for console mode
 
@@ -446,6 +440,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; (add-hook 'tuareg-mode-hook (lambda () (merlin-xref-backend)))
 
+  (setq lsp-use-plists t) ;; see https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
   (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable)
 
   )
@@ -875,8 +870,6 @@ This function is called at the very end of Spacemacs initialization."
    '(ccls lsp-ada lsp-angular lsp-bash lsp-clangd lsp-clojure lsp-cmake lsp-crystal lsp-csharp lsp-css lsp-dart lsp-dhall lsp-dockerfile lsp-elm lsp-elixir lsp-erlang lsp-eslint lsp-fortran lsp-fsharp lsp-gdscript lsp-go lsp-hack lsp-groovy lsp-haskell lsp-haxe lsp-java lsp-javascript lsp-json lsp-kotlin lsp-lua lsp-nim lsp-nix lsp-metals lsp-ocaml lsp-perl lsp-php lsp-pwsh lsp-pyls lsp-python-ms lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript lsp-xml lsp-yaml lsp-sqls lsp-svelte))
  '(lsp-idle-delay 1)
  '(lsp-latex-build-executable "xelatex")
- '(lsp-lens-enable nil)
- '(lsp-log-io t)
  '(magit-no-confirm nil)
  '(org-agenda-category-icon-alist
    '(("serokell" "~/.emacs.d/private/icons/serokell.png" nil nil :ascent center)
