@@ -555,7 +555,8 @@ you should place your code here."
                                       ("RUST" . "Sienna")
                                       ("HYP" . "RosyBrown"))
              )
-      (setq  org-duration-format '(("h") ("min")))
+      (setq org-duration-format '(("h") ("min")))
+      (setq org-cite-global-bibliography '("CENSORED_PATH"))
     )
 
   (use-package org-fancy-priorities
