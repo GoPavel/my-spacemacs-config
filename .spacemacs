@@ -601,9 +601,11 @@ you should place your code here."
     :custom
        (org-mru-clock-how-many 40)
     :bind* (("M-m a o C m" . org-mru-clock-in)
-            ("M-m a o C s" . org-mru-clock-select-recent-task))
+            ([remap org-clock-goto] . org-mru-clock-goto) ;; "M-m a o C g"
+            ("M-m a o C G" . org-mru-clock-show-narrowed))
     :commands org-mru-clock--completing-read ;; for org-clock-in-past
     :autoload (org-mru-clock-to-history)
+    :after org
     )
   (use-package clocktable-by-tag
     :after org) ;; TODO spread it
