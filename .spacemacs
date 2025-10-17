@@ -464,6 +464,9 @@ you should place your code here."
   ;; (global-set-key (kbd "M-<return> /") 'helm-org-ql) conflict with M-RET
   (global-set-key (kbd "M-m f j") 'neotree-find)
 
+  ;; General Emacs configuration
+  (setq split-width-threshold 0) ;; olivetti mode deceives it and causes horz. split
+
   ;; enable unicode emoji
   (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 
