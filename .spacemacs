@@ -77,7 +77,8 @@ values."
      yaml
      docker
      c-c++
-     rust
+     (rust :variables
+           rustic-format-on-save t)
      (latex :variables
             ;; latex-build-command 'LaTeXMk
             latex-enable-folding t)
