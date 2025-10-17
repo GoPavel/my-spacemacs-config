@@ -6,21 +6,30 @@
 
 *** Time management
 
-   * Start time recording: =org-mru-clock-in= (=M-m a o C m=)
-   * Jump to current task: =org-clock-jump-to-current-task= (=M-m a o C j=)
-   * Stop recording: =org-clock-out= (=M-m a o C o=)
-   * Add record in the past: =org-clock-in-past= (=M-m a o C p=)
+   *Dependencies:*
+   + =org-mru-clock=, [[https://github.com/unhammer/org-mru-clock][github]]
+   + =org-analyzer=, [[https://github.com/rksm/clj-org-analyzer][github]]
 
-   * View recently clocked tasks: =org-ql-view-recent-items= (TODO: doesn't show the clock record)
+   *Recording*
+   * =M-m a o C m= (=org-mru-clock-in=): Start time recording
+   * =M-M a o C o= (=org-clock-out=): Stop correct recording
+   * =M-m a o C j= (=org-clock-jump-to-current-task=): Jump to current task
+   * =M-m a o C g= (=org-mru-clock-goto=): Goto task
+   * =M-m a o C G= (=org-mru-clock-show-narrowed=): Goto talk (narrowed)
+   * =M-m a o C p= (=org-clock-in-past=): Add a record in the past
+
+   *Reporting*
+   * =org-update-all-dblocks=: Update all clocktables
+   * =org-analyzer-start=: Visualize statistic
    * View today's clocks: =org-agenda= (=M-m a o a=) + =day-view=(=d=) + show clock records (=l=)
-   * Visualize statistic: =org-analyzer-start=
-   * Show time of current task: TODO
-   * Move last record to another task: TODO
-   * Timer for pauses: TODO
+   * =org-clock-display=: Show total time next to task (=C-c C-c= to exit)
 
 *** Bookmarks (TODO)
 
-*** Paper library (TODO)
+*** Paper library
+   * =M-m b f= (=helm-bibtex=): search for paper
+     * =Enter=: open file or url
+     * =C-z=: help for all actions
 
 *** Task management (TODO)
 
@@ -34,7 +43,7 @@
      - =C-c s i= insert link
      - =C-c s l= search heading for link (TODO)
      - =C-c s d= delete link
-       
+ 
    * Visualization the links (=org-roam=)
 
      TODO
