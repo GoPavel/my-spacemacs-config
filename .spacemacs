@@ -727,36 +727,40 @@ you should place your code here."
         bibtex-completion-pdf-open-function 'helm-open-file-with-default-tool
         )
   (global-set-key (kbd "M-m b f") 'helm-bibtex)
-  (with-eval-after-load "helm-bibtex"
-    (defun my-bibtex-completion-open-url-or-doi (keys)
-      "Copy of from helm-bibtex"
-      (dolist (key keys)
-        (let* ((entry (bibtex-completion-get-entry key))
-               (url   (bibtex-completion-get-value "url" entry))
-               (pdf (bibtex-completion-get-value "pdf" entry))
-               (doi (bibtex-completion-get-value "doi" entry))
-               (browse-url-browser-function
-                (or bibtex-completion-browser-function
-                    browse-url-browser-function)))
-          (cond
-           (pdf
-            (cond ((string-match-p "dl.acm.org" pdf)
-                   (let* (;; (cookies (f-read-text "~/.emacs.d/private/local/acm_cookies.txt"))
-                          (file (concat "CENSORED_PATH" "temp.pdf")))
-                     (with-temp-buffer
-                     ;; (shell-command (concat "curl '" pdf "' " cookies " --output '" file "'"));)
-                       (shell-command (concat "docker run --rm lwthiker/curl-impersonate:0.6-chrome curl_chrome110 " pdf " > " file) t))
-                     (start-process "Okular" "*okular" "okular" file))
-                   )
-                  (t (let* ((browse-url-browser-function (lambda (url _) (start-process "Okular" "*okular" "okular" url))))
-                       (browse-url url)))))
-           (url (browse-url url))
-           (doi (browse-url (s-concat "http://dx.doi.org/" doi)))
-           (t (message "No URL or DOI found for this entry: %s" key))))))
 
-    (defun my-bibtex-completion-open-any (keys)
-      "Copy of from helm-bibtex"
-      (bibtex-completion-open-pdf keys 'my-bibtex-completion-open-url-or-doi))
+  (defun my-bibtex-completion-open-url-or-doi (keys)
+    "Copy of from helm-bibtex"
+    (dolist (key keys)
+      (let* ((entry (bibtex-completion-get-entry key))
+             (url   (bibtex-completion-get-value "url" entry))
+             (pdf (bibtex-completion-get-value "pdf" entry))
+             (doi (bibtex-completion-get-value "doi" entry))
+             (browse-url-browser-function
+              (or bibtex-completion-browser-function
+                  browse-url-browser-function)))
+        (cond
+         (pdf
+          ;; try to minic browser cookies for acm paper
+          (cond ((string-match-p "dl.acm.org" pdf)
+                 (let* ((file (concat "CENSORED_PATH" "temp.pdf")))
+                   (with-temp-buffer
+                     ;; (shell-command (concat "curl '" pdf "' " cookies " --output '" file "'"))
+                     (shell-command (concat "docker run --rm lwthiker/curl-impersonate:0.6-chrome curl_chrome110 " pdf " > " file) t))
+                   (start-process "Okular" "*okular" "okular" file))
+                 )
+                ;; otherwise just call okular
+                (t (let* ((browse-url-browser-function (lambda (pdf _) (start-process "Okular" "*okular" "okular" pdf))))
+                     (browse-url pdf)))))
+         (url (browse-url url))
+         (doi (browse-url (s-concat "http://dx.doi.org/" doi)))
+         (t (message "No URL or DOI found for this entry: %s" key)))))
+    )
+
+  (defun my-bibtex-completion-open-any (keys)
+    "Copy of from helm-bibtex"
+    (bibtex-completion-open-pdf keys 'my-bibtex-completion-open-url-or-doi))
+
+  (with-eval-after-load "helm-bibtex"
     (helm-bibtex-helmify-action my-bibtex-completion-open-any my-helm-bibtex-open-any)
     (helm-delete-action-from-source "Open PDF, URL or DOI" helm-source-bibtex)
     (helm-add-action-to-source "Open PDF File, PDF URL, URL or DOI" 'my-helm-bibtex-open-any helm-source-bibtex 0)
