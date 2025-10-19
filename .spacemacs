@@ -570,6 +570,8 @@ you should place your code here."
              )
       (setq org-duration-format '(("h") ("min")))
       (setq org-cite-global-bibliography '("CENSORED_PATH"))
+
+      (require 'org-ql-search) ;; HACK to enable org-ql links work after startup
     )
 
   (use-package org-fancy-priorities
@@ -681,6 +683,18 @@ you should place your code here."
           (org-clock-in))))
      )
   (global-set-key (kbd "M-m a o C p") 'org-clock-in-past)
+
+  (defun org-dblock-write:file-tags (params)
+    "Bookmarks: show list of tags (bookmarks categories)"
+    (dolist (tag_ (org-get-buffer-tags))
+      (let* ((tag (nth 0 tag_))
+             (line (format "[[org-ql-search:tags:%s][🔖 %s]]\n" tag tag)))
+        (insert line)))
+    ;; TODO: show number of headings
+    ;; TODO: show first n (or all) headings below
+    ;; TODO: show better names for tags via assoc list
+    ;; TODO: show tags hierarchically 
+    )
 
   ;; Org-roam
   ;; Check:
