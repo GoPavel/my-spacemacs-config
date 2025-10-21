@@ -2,6 +2,11 @@
 
   A drawer with my spacemacs configuration: cheat sheets, notes, todos and so on.
 
+** External dependencies
+
+   * LSP servers:
+     * LaTeX: [[https://github.com/latex-lsp/texlab][texlab]]
+
 ** Org-mode Workflow
 
 *** Time management

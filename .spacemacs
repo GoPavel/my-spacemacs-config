@@ -80,8 +80,12 @@ values."
      (rust :variables
            rustic-format-on-save t)
      (latex :variables
-            ;; latex-build-command 'LaTeXMk
-            latex-enable-folding t)
+            latex-build-command "LaTeXMk"
+            latex-build-engine 'default
+            latex-backend 'lsp
+            latex-enable-folding t
+            latex-view-pdf-in-split-window t
+            )
      bibtex
      php
      csv
@@ -423,7 +427,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default dotspacemacs-configuration-layers
     '(syntax-checking :variables syntax-checking-enable-by-default nil))
   (add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 103))) ;; half monitor width
-  (add-hook 'LaTeX-mode-hook (lambda () (TeX-engine-set "xetex")))
   ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
 
   (add-hook 'bibtex-mode-hook (lambda () (set-fill-column 100)))
@@ -909,7 +912,6 @@ This function is called at the very end of Spacemacs initialization."
           lsp-purescript lsp-r lsp-rf lsp-rust lsp-solargraph lsp-sorbet lsp-tex
           lsp-terraform lsp-vala lsp-verilog lsp-vetur lsp-vhdl lsp-vimscript
           lsp-xml lsp-yaml lsp-sqls lsp-svelte))
- '(lsp-latex-build-executable "xelatex")
  '(magit-no-confirm nil)
  '(org-agenda-category-icon-alist
    '(("serokell" "~/.emacs.d/private/icons/serokell.png" nil nil :ascent center)
