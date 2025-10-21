@@ -12,8 +12,8 @@
 *** Time management
 
    *Dependencies:*
-   + =org-mru-clock=, [[https://github.com/unhammer/org-mru-clock][github]]
-   + =org-analyzer=, [[https://github.com/rksm/clj-org-analyzer][github]]
+   * =org-mru-clock=, [[https://github.com/unhammer/org-mru-clock][github]]
+   * =org-analyzer=, [[https://github.com/rksm/clj-org-analyzer][github]]
 
    *Recording*
    * =M-m a o C m= (=org-mru-clock-in=): Start time recording
@@ -29,7 +29,15 @@
    * View today's clocks: =org-agenda= (=M-m a o a=) + =day-view=(=d=) + show clock records (=l=)
    * =org-clock-display=: Show total time next to task (=C-c C-c= to exit)
 
-*** Bookmarks (TODO)
+*** Bookmarks
+   *Dependencies:*
+   * =org-ql=, [[https://github.com/alphapapa/org-ql][github]]
+
+   *Recording*
+   * =org-protocol=, =org-capture= TODO
+
+   *View & Search*
+   * =org-dblock-write:file-tags=: draw clickable hierarchy of tags
 
 *** Paper library
    * =M-m b f= (=helm-bibtex=): search for paper
@@ -55,6 +63,7 @@
 
 ** Cheat sheet
 *** Basic
+    - =M-m q R= restart Emacs
     - =M-x command= call command by its name
     - =C-x k= kill buffer
     - =M-m w /= split window vertically
@@ -65,7 +74,6 @@
 *** =M-x helm-color=
     - =C-c n= insert color name
     - =C-c r= insert RGB hex
-*** Helm-bibtex =M-m b f=
 *** Org-mode
 **** Working with heading
      - =C-c C-t= change state
@@ -133,3 +141,10 @@
     + =M-m m c= is in-active-major-mode binding
 
     So now for me it's a bit clear and will try to keep it in mind for new commands
+
+** Debugging
+
+   * =M-:= eval lisp expression. Could be used to set variable or interactively test custom function
+   * =toggle-debug-on-error= allows to see stack trace
+   * =C-h k= (=describe-key=) shows which command bind to the keystroke
+   * =C-h v= (=describe-variable=) the same for variables
