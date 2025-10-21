@@ -686,14 +686,29 @@ you should place your code here."
 
   (defun org-dblock-write:file-tags (params)
     "Bookmarks: show list of tags (bookmarks categories)"
-    (dolist (tag_ (org-get-buffer-tags))
-      (let* ((tag (nth 0 tag_))
-             (line (format "[[org-ql-search:tags:%s][🔖 %s]]\n" tag tag)))
-        (insert line)))
+    (let* ((groups org-tag-groups-alist)
+           (tags (mapcar #'car (org-get-buffer-tags)))
+           (children (apply #'append (mapcar #'cdr groups)))
+           (is_not_child (lambda (tag) (not (member tag children))))
+           (roots (-filter is_not_child (mapcar #'car groups)))
+           (seen '()))
+      (defun go (level tag)
+        (push tag seen)
+        (dotimes (number level) (insert "  "))
+        (insert (format " * [[org-ql-search:tags:%s][🔖 %s]]\n" tag tag))
+        (mapcar (apply-partially #'go (+ level 1))
+                (cdr (assoc tag groups)))
+        (when (eq level 0)
+          (insert "\n"))
+        )
+      (mapcar (apply-partially #'go 0) roots)
+      (dolist (tag (-filter (lambda (tag_) (not (member tag_ seen))) tags))
+        (let* ((line (format " * [[org-ql-search:tags:%s][🔖 %s]]\n" tag tag)))
+          (insert line)))
+      )
     ;; TODO: show number of headings
     ;; TODO: show first n (or all) headings below
     ;; TODO: show better names for tags via assoc list
-    ;; TODO: show tags hierarchically 
     )
 
   ;; Org-roam
