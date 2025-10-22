@@ -584,6 +584,7 @@ you should place your code here."
       (setq org-duration-format '(("h") ("min")))
       (setq org-cite-global-bibliography '("CENSORED_PATH"))
 
+      (global-set-key (kbd "M-m a o C u") 'org-clock-update-time-maybe)
       (require 'org-ql-search) ;; HACK to enable org-ql links work after startup
     )
 
