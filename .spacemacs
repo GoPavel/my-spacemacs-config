@@ -449,6 +449,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   )
 
+;;; Helpers:
+
+(defun remove-prettify-symbols (symbols)
+  "Remove SYMBOLS (strings) from `prettify-symbols-alist`."
+  (dolist (sym symbols)
+    (setq prettify-symbols-alist
+          (assoc-delete-all sym prettify-symbols-alist))))
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -518,6 +526,7 @@ you should place your code here."
     )
 
   (global-prettify-symbols-mode +1)
+  (setq prettify-symbols-unprettify-at-point t)
 
   ;;; Org-mode
   (with-eval-after-load 'org
@@ -830,6 +839,13 @@ you should place your code here."
 
 
   (smart-tabs-insinuate 'c)
+
+  ;;; LaTeX
+  (setenv "TEXINPUTS" (concat ".:./Styles:../Styles/:" (getenv "TEXINPUTS")))
+  (setenv "BSTINPUTS" (concat ".:./Styles:../Styles/:" (getenv "BSTINPUTS")))
+  (add-hook 'LaTeX-mode-hook
+      (lambda () (remove-prettify-symbols '("\\quad" "\\qquad"))))
+
 )
 
 ;; TODO: move stable configurations into :variables
@@ -985,21 +1001,9 @@ This function is called at the very end of Spacemacs initialization."
  '(paradox-github-token t)
  '(pdf-view-continuous t)
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
- '(prettify-symbols-unprettify-at-point t)
  '(python-shell-interpreter "python")
  '(safe-local-variable-values
    '((TeX-Master . "../main") (TeX-Master . "main")
-     (eval progn (setenv "TEXINPUTS" (format ".:../styles//:../sav-science//:"))
-           (setenv "BSTINPUTS" (format ".:../styles//:")))
-     (eval progn (setenv "TEXINPUTS" (format ".:../styles//:../sav-science//:"))
-           (setenv "BSTINPUTS" (format ".:../styles//:%s" (getenv "BSTINPUTS"))))
-     (eval progn
-           (setenv "TEXINPUTS"
-                   (format ".:../styles//:../sav-science//:%s"
-                           (getenv "TEXINPUTS")))
-           (setenv "BSTINPUTS" (format ".:../styles//:%s" (getenv "BSTINPUTS"))))
-     (eval setenv "TEXINPUTS"
-           (format ".:../styles//:../sav-science//:%s" (getenv "TEXINPUTS")))
      (Tex-master . "notes") (typescript-backend . tide)
      (typescript-backend . lsp) (javascript-backend . tide)
      (javascript-backend . tern) (javascript-backend . lsp)))
