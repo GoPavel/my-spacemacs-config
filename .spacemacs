@@ -170,6 +170,7 @@ values."
     (smart-tabs-mode :location (recipe :fetcher github
                                        :repo "miketz/smarttabs"
                                        :branch "master"))
+
     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -417,7 +418,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
   (setq-default
    dotspacemacs-scroll-bar-while-scrolling nil)
 
@@ -426,6 +426,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'coq-mode-hook #'column-enforce-mode)
   (setq-default dotspacemacs-configuration-layers
     '(syntax-checking :variables syntax-checking-enable-by-default nil))
+
   (add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 103))) ;; half monitor width
   ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
 
@@ -621,6 +622,7 @@ you should place your code here."
     :autoload (org-mru-clock-to-history)
     :after org
     )
+
   (use-package clocktable-by-tag
     :after org) ;; TODO spread it
   (use-package clocktable-by-category
@@ -815,6 +817,7 @@ you should place your code here."
   (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
   (add-hook 'tuareg-mode-hook (lambda() (electric-indent-mode 0)))
 
+  ;;; Flycheck
   (use-package flycheck-posframe
     :ensure t
     :after flycheck
@@ -862,18 +865,12 @@ This function is called at the very end of Spacemacs initialization."
  '(TeX-command-BibTeX "BibTeX")
  '(TeX-command-Biber "biber")
  '(TeX-view-program-list
-   '(("Okular"
-      ("okular --noraise --unique %o"
-       (mode-io-correlate "#src:%n%a"))
+   '(("Okular" ("okular --noraise --unique %o" (mode-io-correlate "#src:%n%a"))
       "okular")))
  '(TeX-view-program-selection
-   '(((output-dvi has-no-display-manager)
-      "dvi2tty")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "PDF Tools")
-     (output-html "xdg-open")))
+   '(((output-dvi has-no-display-manager) "dvi2tty")
+     ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi")
+     (output-pdf "PDF Tools") (output-html "xdg-open")))
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(bibtex-align-at-equal-sign t)
@@ -997,7 +994,55 @@ This function is called at the very end of Spacemacs initialization."
  '(package-directory-list
    '("/usr/share/emacs/26.2/site-lisp/elpa" "/usr/share/emacs/site-lisp/elpa"))
  '(package-selected-packages
-   '(org-mru-clock olivetti org-analyzer org-roam-ui ssh-agency web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc coffee-mode org-ref pdf-tools key-chord ivy tablist helm-bibtex bibtex-completion parsebib biblio biblio-core company-lsp lsp-mode ht lsp-haskell memoize all-the-icons org-fancy-priorities company-emacs-eclim eclim auctex-lua company-auctex auctex-latexmk sql-indent auctex cdlatex proof-general company-coq company-math math-symbol-lists flymd web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data idris-mode prop-menu flycheck-haskell hlint-refactor hindent helm-hoogle helm-company helm-c-yasnippet haskell-snippets fuzzy company-statistics company-ghci company-ghc ghc company-cabal company-c-headers company-anaconda cmm-mode auto-yasnippet yasnippet ac-ispell auto-complete yaml-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot flycheck-pos-tip pos-tip flyspell-correct-helm flyspell-correct auto-dictionary disaster cmake-mode clang-format smeargle orgit magit-gitflow magit-popup helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter evil-magit magit transient git-commit with-editor diff-hl yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode intero haskell-mode company flycheck hy-mode dash-functional helm-pydoc gh-md eshell-z eshell-prompt-extras esh-help cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))
+   '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap
+               aggressive-indent alert all-the-icons anaconda-mode anzu async
+               auctex auctex-latexmk auctex-lua auto-compile auto-complete
+               auto-dictionary auto-highlight-symbol auto-yasnippet avy biblio
+               biblio-core bibtex-completion bind-key bind-map cdlatex
+               clang-format clean-aindent-mode cmake-mode cmm-mode coffee-mode
+               column-enforce-mode company company-anaconda company-auctex
+               company-c-headers company-cabal company-coq company-emacs-eclim
+               company-ghc company-ghci company-lsp company-math
+               company-statistics company-web cython-mode dash dash-functional
+               define-word diff-hl diminish disaster dumb-jump eclim
+               elisp-slime-nav emmet-mode epl esh-help eshell-prompt-extras
+               eshell-z eval-sexp-fu evil evil-anzu evil-args evil-ediff
+               evil-escape evil-exchange evil-iedit-state evil-indent-plus
+               evil-lisp-state evil-magit evil-matchit evil-mc
+               evil-nerd-commenter evil-numbers evil-search-highlight-persist
+               evil-surround evil-tutor evil-unimpaired evil-visual-mark-mode
+               evil-visualstar exec-path-from-shell expand-region eyebrowse f
+               fancy-battery fill-column-indicator flx flx-ido flycheck
+               flycheck-haskell flycheck-pos-tip flymd flyspell-correct
+               flyspell-correct-helm fringe-helper fuzzy gh-md ghc git-commit
+               git-gutter git-gutter+ git-gutter-fringe git-gutter-fringe+
+               git-link git-messenger git-timemachine gitattributes-mode
+               gitconfig-mode gitignore-mode gntp gnuplot golden-ratio
+               google-translate goto-chg haml-mode haskell-mode haskell-snippets
+               helm helm-ag helm-bibtex helm-c-yasnippet helm-company helm-core
+               helm-css-scss helm-descbinds helm-flx helm-gitignore helm-hoogle
+               helm-make helm-mode-manager helm-projectile helm-pydoc helm-swoop
+               helm-themes highlight highlight-indentation highlight-numbers
+               highlight-parentheses hindent hl-todo hlint-refactor ht htmlize
+               hungry-delete hy-mode hydra idris-mode iedit indent-guide intero
+               ivy js-doc js2-mode js2-refactor json-mode json-reformat
+               json-snatcher key-chord link-hint linum-relative live-py-mode
+               livid-mode log4e lorem-ipsum lv macrostep magit magit-gitflow
+               magit-popup markdown-mode markdown-toc math-symbol-lists memoize
+               mmm-mode move-text multi-term multiple-cursors neotree olivetti
+               open-junk-file org-analyzer org-bullets org-category-capture
+               org-download org-fancy-priorities org-mime org-mru-clock
+               org-pomodoro org-present org-projectile org-ref org-roam-ui orgit
+               packed paradox parent-mode parsebib pcre2el pdf-tools persp-mode
+               pip-requirements pkg-info popup popwin pos-tip powerline
+               projectile proof-general prop-menu pug-mode py-isort pyenv-mode
+               pytest pythonic pyvenv rainbow-delimiters request restart-emacs s
+               sass-mode scss-mode shell-pop simple-httpd skewer-mode slim-mode
+               smartparens smeargle spaceline spinner sql-indent ssh-agency
+               tablist tagedit toc-org transient undo-tree use-package uuidgen
+               vi-tilde-fringe volatile-highlights web-beautify
+               web-completion-data web-mode which-key winum with-editor
+               ws-butler xterm-color yaml-mode yapfify yasnippet))
  '(paradox-github-token t)
  '(pdf-view-continuous t)
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
@@ -1016,11 +1061,11 @@ This function is called at the very end of Spacemacs initialization."
  '(tuareg-default-indent 4)
  '(tuareg-opam-insinuate t)
  '(warning-suppress-log-types
-     '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
+   '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
  '(warning-suppress-types
-     '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
-   '(word-wrap t)
-   '(yas-global-mode nil))
+   '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
+ '(word-wrap t)
+ '(yas-global-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
