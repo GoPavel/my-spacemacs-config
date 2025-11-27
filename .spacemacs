@@ -56,6 +56,7 @@ This function should only modify configuration layer settings."
      version-control
      (emacs-lisp :variables
                  emacs-lisp-format-on-save nil)
+     ;; TODO: switch to treemacs
      (neotree :variables
               neo-window-width 28
               neo-vc-integration '(face)
