@@ -1222,6 +1222,7 @@ This function is called at the very end of Spacemacs initialization."
      "CENSORED_PATH"
      "CENSORED_PATH"
      "CENSORED_PATH"
+     "CENSORED_PATH"
      "CENSORED_PATH"))
  '(org-agenda-prefix-format
    '((agenda . " %-3i %-12:c%?-12t% s") (todo . " %-3i %-12:c")
