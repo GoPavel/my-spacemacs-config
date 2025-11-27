@@ -87,7 +87,7 @@ This function should only modify configuration layer settings."
      (latex :variables
             latex-build-command "LaTeXMk"
             latex-build-engine 'default
-            latex-backend 'lsp
+            latex-backend 'lsp ;; requires texlab binary
             latex-enable-folding t
             latex-view-pdf-in-split-window t
             )
