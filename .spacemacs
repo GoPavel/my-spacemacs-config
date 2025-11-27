@@ -1273,11 +1273,11 @@ This function is called at the very end of Spacemacs initialization."
  '(package-selected-packages
    '(ac-ispell ace-jump-helm-line ace-link ace-window adaptive-wrap
                aggressive-indent alert all-the-icons anaconda-mode anzu async
-               auctex auctex-latexmk auctex-lua auto-compile auto-complete
+               auto-compile auto-complete
                auto-dictionary auto-highlight-symbol auto-yasnippet avy biblio
                biblio-core bibtex-completion bind-key bind-map cdlatex chess
                clang-format clean-aindent-mode cmake-mode cmm-mode coffee-mode
-               column-enforce-mode company company-anaconda company-auctex
+               column-enforce-mode company company-anaconda
                company-c-headers company-cabal company-coq company-emacs-eclim
                company-ghc company-ghci company-lsp company-math
                company-statistics company-web cython-mode dash dash-functional
