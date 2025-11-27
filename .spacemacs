@@ -185,9 +185,10 @@ This function should only modify configuration layer settings."
 
     ;; repo is dead: https://github.com/jcsalomon/smarttabs
     ;; smart-tabs-mode
-    (smart-tabs-mode :location (recipe :fetcher github
-                                       :repo "miketz/smarttabs"
-                                       :branch "master"))
+    ;; TODO: broken due to some dep cycle
+    ;; (smart-tabs-mode :location (recipe :fetcher github
+    ;;                                    :repo "miketz/smarttabs"
+    ;;                                    :branch "master"))
 
     chess
    )
@@ -1121,7 +1122,7 @@ you should place your code here."
                 (unless (display-graphic-p) flycheck-pos-tip-mode))))
 
 
-  (smart-tabs-insinuate 'c)
+  ;; (smart-tabs-insinuate 'c) ;; TODO: disabled temporary
 
   ;;; LaTeX
   (setenv "TEXINPUTS" (concat ".:./Styles:../Styles/:" (getenv "TEXINPUTS")))
