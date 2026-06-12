@@ -79,7 +79,8 @@ values."
      docker
      c-c++
      (rust :variables
-           rustic-format-on-save t)
+           rustic-format-on-save t
+           rustic-format-display-method 'ignore)
      (latex :variables
             latex-build-command "LaTeXMk"
             latex-build-engine 'default
