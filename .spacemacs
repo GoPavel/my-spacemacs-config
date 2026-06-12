@@ -888,6 +888,11 @@ you should place your code here."
   ;; (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp)
   (add-hook 'haskell-literate-mode-hook #'lsp)
+  (with-eval-after-load 'lsp-haskell
+    (setq lsp-haskell-formatting-provider "fourmolu")
+    (setq lsp-haskell-plugin-fourmolu-config-external t)
+    (setq lsp-haskell-plugin-fourmolu-config-path "/home/gopavel/.local/bin/fourmolu")
+    (setq lsp-format-buffer-on-save t))
 
   ;;; Ocaml and Coq IDE
   (add-hook 'tuareg-mode-hook 'column-enforce-mode)
