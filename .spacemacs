@@ -523,11 +523,11 @@ you should place your code here."
     :custom
     (dashboard-center-content t)
     (dashboard-footer-messages
-      (with-temp-buffer
-        (insert-file-contents "CENSORED_PATH")
-        (split-string
-         (buffer-string)
-         "
+     (with-temp-buffer
+       (insert-file-contents "CENSORED_PATH")
+       (split-string
+        (buffer-string)
+        "
 " t)))
     (dashboard-items '((recents . 3) (bookmarks . 17) (projects . 3)))
     (dashboard-set-file-icons t)
@@ -656,7 +656,7 @@ you should place your code here."
   (use-package org-mru-clock
     :ensure t
     :custom
-       (org-mru-clock-how-many 40)
+    (org-mru-clock-how-many 40)
     :bind* (("M-m a o C m" . org-mru-clock-in)
             ([remap org-clock-goto] . org-mru-clock-goto) ;; "M-m a o C g"
             ("M-m a o C G" . org-mru-clock-show-narrowed))
@@ -674,7 +674,7 @@ you should place your code here."
     "Prompt link"
     (interactive)
     (read-string "Link: ")
-  )
+    )
 
   (defun prompt-heading ()
     ;; TODO
@@ -703,16 +703,19 @@ you should place your code here."
            "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
           ("s" "Bookmark (Science)" plain
            (file "CENSORED_PATH")
-            "* TODO [[%(call-interactively #'prompt-link)][%^{PROMPT}] %^G\n%^{AUTHOR}p")
+           "* TODO [[%(call-interactively #'prompt-link)][%^{PROMPT}] %^G\n%^{AUTHOR}p")
+
           ("n" "Bookmark (News)" plain
            (file "CENSORED_PATH")
            "* TODO [[%(call-interactively #'prompt-link)][%?]]\n")
+
           ("o" "Book" entry
            (file+headline "CENSORED_PATH" prompt-heading)
            "\n** TODO %?\n") ;; TODO
+
           ;; ("todo" "TODO" entry))
           )
-  )
+        )
   (add-hook 'org-capture-prepare-finalize-hook #'org-id-get-create)
 
   ;; Org-clocking
@@ -731,13 +734,13 @@ you should place your code here."
          (org-clock-in nil start)))
       (org-clock-out nil nil (time-add start (seconds-to-time seconds)))
       )
-     ;; resume interrupted task (workaround: namely reopen it)
-     (when (marker-buffer org-clock-interrupted-task)
-       (with-current-buffer (org-base-buffer (marker-buffer org-clock-interrupted-task))
-         (org-with-wide-buffer
-          (goto-char (marker-position org-clock-interrupted-task))
-          (org-clock-in))))
-     )
+    ;; resume interrupted task (workaround: namely reopen it)
+    (when (marker-buffer org-clock-interrupted-task)
+      (with-current-buffer (org-base-buffer (marker-buffer org-clock-interrupted-task))
+        (org-with-wide-buffer
+         (goto-char (marker-position org-clock-interrupted-task))
+         (org-clock-in))))
+    )
   (global-set-key (kbd "M-m a o C p") 'org-clock-in-past)
 
   (defun org-dblock-write:file-tags (params)
@@ -784,7 +787,7 @@ you should place your code here."
                              org-roam-db-location "CENSORED_PATH"))
           (t (message "Wrong argument")))
     (org-roam-db-sync)
-  )
+    )
   (global-set-key (kbd "M-RET r s") 'org-roam-switch)
 
 
@@ -820,8 +823,9 @@ you should place your code here."
                    (start-process "Okular" "*okular" "okular" file))
                  )
                 ;; otherwise just call okular
-                (t (let* ((browse-url-browser-function (lambda (pdf _) (start-process "Okular" "*okular" "okular" pdf))))
-                     (browse-url pdf)))))
+                (t
+                 (let* ((browse-url-browser-function (lambda (pdf _) (start-process "Okular" "*okular" "okular" pdf))))
+                   (browse-url pdf)))))
          (url (browse-url url))
          (doi (browse-url (s-concat "http://dx.doi.org/" doi)))
          (t (message "No URL or DOI found for this entry: %s" key)))))
@@ -869,15 +873,15 @@ you should place your code here."
     :after flycheck
     :config (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)
     :custom
-      (flycheck-posframe-position 'window-top-right-corner)
-      (flycheck-posframe-border-width 5)
-      (flycheck-posframe-warning-prefix "\u26a0 ")
-      (flycheck-posframe-error-prefix "\u274c ")
+    (flycheck-posframe-position 'window-top-right-corner)
+    (flycheck-posframe-border-width 5)
+    (flycheck-posframe-warning-prefix "\u26a0 ")
+    (flycheck-posframe-error-prefix "\u274c ")
     :custom-face
-      (flycheck-posframe-error-face ((t (:inherit flycheck-error-list-error))))
-      (flycheck-posframe-warning-face ((t (:inherit flycheck-error-list-warning))))
-      (flycheck-posframe-info-face ((t (:inherit flycheck-error-list-info))))
-      (flycheck-posframe-border-face ((t (:inherit vertical-border))))
+    (flycheck-posframe-error-face ((t (:inherit flycheck-error-list-error))))
+    (flycheck-posframe-warning-face ((t (:inherit flycheck-error-list-warning))))
+    (flycheck-posframe-info-face ((t (:inherit flycheck-error-list-info))))
+    (flycheck-posframe-border-face ((t (:inherit vertical-border))))
     )
 
   ;; TODO: doesn't work, restart flycheck-pos-tip-mode works
@@ -893,7 +897,7 @@ you should place your code here."
   (setenv "TEXINPUTS" (concat ".:./Styles:../Styles/:" (getenv "TEXINPUTS")))
   (setenv "BSTINPUTS" (concat ".:./Styles:../Styles/:" (getenv "BSTINPUTS")))
   (add-hook 'LaTeX-mode-hook
-      (lambda () (remove-prettify-symbols '("\\quad" "\\qquad"))))
+            (lambda () (remove-prettify-symbols '("\\quad" "\\qquad"))))
 
 )
 
@@ -1079,10 +1083,10 @@ This function is called at the very end of Spacemacs initialization."
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(python-shell-interpreter "python")
  '(safe-local-variable-values
-   '((TeX-Master . "../main") (TeX-Master . "main")
-     (Tex-master . "notes") (typescript-backend . tide)
-     (typescript-backend . lsp) (javascript-backend . tide)
-     (javascript-backend . tern) (javascript-backend . lsp)))
+   '((TeX-Master . "../main") (TeX-Master . "main") (Tex-master . "notes")
+     (typescript-backend . tide) (typescript-backend . lsp)
+     (javascript-backend . tide) (javascript-backend . tern)
+     (javascript-backend . lsp)))
  '(sh-basic-offset 2)
  '(spacemacs-yank-indent-threshold 0)
  '(tab-bar-mode t)
