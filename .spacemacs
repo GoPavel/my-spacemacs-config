@@ -936,7 +936,10 @@ you should place your code here."
   (add-hook 'LaTeX-mode-hook
             (lambda () (remove-prettify-symbols '("\\quad" "\\qquad"))))
 
-)
+  ;; BibTeX
+  (add-hook 'bibtex-mode-hook
+          (lambda () (add-hook 'before-save-hook #'bibtex-reformat nil t)))
+  )
 
 ;; TODO: move stable configurations into :variables
 (defun dotspacemacs/emacs-custom-settings ()
