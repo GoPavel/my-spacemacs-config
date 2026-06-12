@@ -847,13 +847,13 @@ you should place your code here."
         (cond
          (pdf
           ;; try to minic browser cookies for acm paper
-          (cond ((string-match-p "dl.acm.org" pdf)
-                 (let* ((file (concat "CENSORED_PATH" "temp.pdf")))
-                   (with-temp-buffer
-                     ;; (shell-command (concat "curl '" pdf "' " cookies " --output '" file "'"))
-                     (shell-command (concat "docker run --rm lwthiker/curl-impersonate:0.6-chrome curl_chrome110 " pdf " > " file) t))
-                   (start-process "Okular" "*okular" "okular" file))
-                 )
+          (cond ;;((string-match-p "dl.acm.org" pdf)
+          ;;       (let* ((file (concat "CENSORED_PATH" "temp.pdf")))
+          ;;         (with-temp-buffer
+          ;;           ;; (shell-command (concat "curl '" pdf "' " cookies " --output '" file "'"))
+          ;;           (shell-command (concat "docker run --rm lwthiker/curl-impersonate:0.6-chrome curl_chrome110 " pdf " > " file) t))
+          ;;         (start-process "Okular" "*okular" "okular" file))
+          ;;       )
                 ;; otherwise just call okular
                 (t
                  (let* ((browse-url-browser-function (lambda (pdf _) (start-process "Okular" "*okular" "okular" pdf))))
