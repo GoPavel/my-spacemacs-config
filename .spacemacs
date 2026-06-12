@@ -792,6 +792,8 @@ you should place your code here."
     ;; TODO: show better names for tags via assoc list
     )
 
+  (load-file "~/.emacs.d/private/my-emacs-helpers/org-clock-histogram.el")
+
   ;; Org-roam
   ;; Check:
   ;; https://github.com/syl20bnr/spacemacs/issues/14477 (SOLVED)
