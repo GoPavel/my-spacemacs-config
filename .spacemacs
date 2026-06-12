@@ -87,7 +87,15 @@ values."
             latex-enable-folding t
             latex-view-pdf-in-split-window t
             )
-     bibtex
+     (bibtex :variables
+             bibtex-align-at-equal-sign t
+             bibtex-entry-format
+             '(opts-or-alts required-fields numerical-fields realign unify-case sort-fields)
+              bibtex-generate-url-list
+              '((("url" . ".*:.*"))
+                (("doi" . "10\\.[0-9]+/.+") "https://dx.doi.org/%s" ("doi" ".*" 0))
+                (("pdf" . ".*:.*")))
+              )
      php
      csv
      vimscript
@@ -851,6 +859,10 @@ you should place your code here."
   (add-hook 'coq-mode-hook    (lambda() (setq mode-name "🐓")))
   (add-hook 'tuareg-mode-hook (lambda() (electric-indent-mode 0)))
 
+  (with-eval-after-load 'tuareg
+    (setq tuareg-default-indent 4)
+    (setq tuareg-opam-insinuate t))
+
   ;;; Flycheck
   (use-package flycheck-posframe
     :ensure t
@@ -896,7 +908,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-command-BibTeX "BibTeX")
  '(TeX-command-Biber "biber")
  '(TeX-view-program-list
    '(("Okular" ("okular --noraise --unique %o" (mode-io-correlate "#src:%n%a"))
@@ -907,22 +918,12 @@ This function is called at the very end of Spacemacs initialization."
      (output-pdf "PDF Tools") (output-html "xdg-open")))
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
- '(bibtex-align-at-equal-sign t)
- '(bibtex-entry-format
-   '(opts-or-alts required-fields numerical-fields realign unify-case sort-fields))
- '(bibtex-generate-url-list
-   '((("url" . ".*:.*"))
-     (("doi" . "10\\.[0-9]+/.+") "http://dx.doi.org/%s" ("doi" ".*" 0))
-     (("pdf" . ".*:.*"))))
- '(debugger-batch-max-lines 40)
+ '(delete-selection-mode nil)
  '(desktop-path '("~/.emacs.d/.cache/desktop" "~/.emacs.d/" "~"))
  '(doc-view-resolution 300)
  '(epg-pinentry-mode 'loopback)
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-display-errors-delay 1.7)
- '(flycheck-python-flake8-executable "python3")
- '(flycheck-python-pycompile-executable "python3")
- '(flycheck-python-pylint-executable "python3")
  '(global-hl-todo-mode t)
  '(grep-find-ignored-directories
    '("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs"
@@ -989,7 +990,6 @@ This function is called at the very end of Spacemacs initialization."
  '(org-archive-location "::* Archive")
  '(org-clock-idle-time 10)
  '(org-columns-default-format "%25ITEM %TODO %6Effort %6CLOCKSUM %TAGS")
- '(org-export-date-timestamp-format nil)
  '(org-file-apps
    '((auto-mode . emacs) (directory . emacs) ("\\.mm\\'" . default)
      ("\\.x?html?\\'" . default) ("\\.pdf\\'" . default)))
@@ -1008,15 +1008,12 @@ This function is called at the very end of Spacemacs initialization."
  '(org-image-actual-width '(400))
  '(org-latex-pdf-process
    '("latexmk -interaction=nonstopmode -pdf -output-directory=%o %f"))
- '(org-latex-remove-logfiles t)
  '(org-log-into-drawer t)
  '(org-log-note-clock-out t)
- '(org-pomodoro-length 25)
  '(org-priority-faces '((65 . "red") (66 . "orange") (67 . "cyan")))
  '(org-priority-lowest 68)
  '(org-return-follows-link t)
  '(org-startup-truncated nil)
- '(org-super-agenda-groups nil)
  '(origami-show-fold-header t)
  '(package-archives
    '(("melpa" . "https://melpa.org/packages/")
@@ -1092,14 +1089,11 @@ This function is called at the very end of Spacemacs initialization."
  '(tab-width 2)
  '(tex-bibtex-command "biber")
  '(tooltip-hide-delay 20)
- '(tuareg-default-indent 4)
- '(tuareg-opam-insinuate t)
  '(warning-suppress-log-types
    '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
  '(warning-suppress-types
    '((comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp) (comp)))
- '(word-wrap t)
- '(yas-global-mode nil))
+ '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
