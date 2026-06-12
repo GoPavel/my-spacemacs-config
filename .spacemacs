@@ -697,13 +697,23 @@ you should place your code here."
           ;;    "\n"
           ;;    "* DRAFT %? %^G\n")
           ;;  )
-          ("p" "Protocol" plain (file "CENSORED_PATH")
+          ("p" "Protocol" plain
+           (file "CENSORED_PATH")
            "* %? [[%:link][%:description]] %^G\nCaptured On: %U\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+
           ("L" "Protocol Link" plain (file "CENSORED_PATH")
            "* %? [[%:link][%:description]] %^G\nCaptured On: %U")
-          ("b" "Bookmark (Interest)" plain
+
+          ("b" "Web Bookmark" plain
            (file "CENSORED_PATH")
-           "* TOREAD [[%(call-interactively #'prompt-link)][%?] %^G\n")
+           ,(string-join '("* [[%(call-interactively #'prompt-link)][%^{Title}]] %^g"
+                          ":PROPERTIES:"
+                          ":ADDED: %u"
+                          ":END:"
+                          "  %?")
+                        "\n")
+           )
+
           ("s" "Bookmark (Science)" plain
            (file "CENSORED_PATH")
            "* TODO [[%(call-interactively #'prompt-link)][%^{PROMPT}] %^G\n%^{AUTHOR}p")
