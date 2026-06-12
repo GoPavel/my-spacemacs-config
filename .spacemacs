@@ -811,6 +811,17 @@ you should place your code here."
     )
   (global-set-key (kbd "M-RET r s") 'org-roam-switch)
 
+  (defun org-add-star ()
+    "Add star in the end of heading TODO")
+  (global-set-key (kbd "C-x C-8") 'org-add-star)
+
+  (defun org-set-added-date ()
+    "Set creation date to the heading under cursor"
+    (interactive)
+    (save-excursion
+      (org-back-to-heading)
+      (org-set-property "ADDED" (format-time-string "[%Y-%m-%d %a]"))))
+  (global-set-key (kbd "M-m a o 0") 'org-set-added-date)
 
   ;; Helm-bibtex
   ;; TODO: add action to download pdf and store in the folder + insert `File = {}' field
