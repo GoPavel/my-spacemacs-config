@@ -461,6 +461,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (setq prettify-symbols-alist
           (assoc-delete-all sym prettify-symbols-alist))))
 
+;; allow some link-buttoms
+(defun my-org-link-elisp-confirm-function (prompt)
+  (if (string= prompt "Execute (progn (org-update-all-dblocks) (save-buffer)) as Elisp? ")
+      t
+      (yes-or-no-p prompt)
+    )
+  )
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
