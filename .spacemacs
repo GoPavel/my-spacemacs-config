@@ -825,7 +825,7 @@ you should place your code here."
 
   ;; Helm-bibtex
   ;; TODO: add action to download pdf and store in the folder + insert `File = {}' field
-  (setq bibtex-completion-bibliography '("CENSORED_PATH")
+  (setq bibtex-completion-bibliography '("CENSORED_PATH" "CENSORED_PATH")
         bibtex-completion-library-path '("CENSORED_PATH")
         bibtex-completion-pdf-field "File"
         bibtex-completion-find-additional-pdfs t
