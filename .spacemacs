@@ -171,7 +171,9 @@ values."
                                        :repo "miketz/smarttabs"
                                        :branch "master"))
 
-    )
+    chess
+   )
+
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -999,7 +1001,7 @@ This function is called at the very end of Spacemacs initialization."
                aggressive-indent alert all-the-icons anaconda-mode anzu async
                auctex auctex-latexmk auctex-lua auto-compile auto-complete
                auto-dictionary auto-highlight-symbol auto-yasnippet avy biblio
-               biblio-core bibtex-completion bind-key bind-map cdlatex
+               biblio-core bibtex-completion bind-key bind-map cdlatex chess
                clang-format clean-aindent-mode cmake-mode cmm-mode coffee-mode
                column-enforce-mode company company-anaconda company-auctex
                company-c-headers company-cabal company-coq company-emacs-eclim
