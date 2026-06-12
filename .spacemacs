@@ -489,11 +489,13 @@ you should place your code here."
 
   ;;; Keybindings
   (global-set-key (kbd "M-p") 'company-complete)
+  (global-set-key (kbd "C-S-SPC") 'company-complete)
   (global-set-key (kbd "C-S-t") 'tab-new)
   (global-set-key (kbd "M-m C-/") 'helm-do-grep-ag)
-  (global-set-key (kbd "C-c C-<tab>") 'org-force-cycle-archived)
   ;; (global-set-key (kbd "M-<return> /") 'helm-org-ql) conflict with M-RET
   (global-set-key (kbd "M-m f j") 'neotree-find)
+  ;;; org-mode
+  (global-set-key (kbd "C-c C-<tab>") 'org-force-cycle-archived)
 
   ;; General Emacs configuration
   (setq split-width-threshold 0) ;; olivetti mode deceives it and causes horz. split
