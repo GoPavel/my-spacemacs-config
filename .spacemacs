@@ -122,14 +122,14 @@ values."
     ssh-agency
     dashboard
     pinentry ;; for git ssh
-    exec-path-from-shell ;; ensure env as in shell
+    exec-path-from-shell ;; ensure env as in shell ;; TODO: doc
 
     ;; Fancy stuff
     all-the-icons
 
     ;; Org-mode stuff
     (org-super-links :location (recipe :fetcher github :repo "toshism/org-super-links" :commit "develop"))
-    ;; https://github.com/mickeynp/ligature.el (WAIT emacs 28)
+    ;; https://github.com/mickeynp/ligature.el (WAIT emacs 28) TODO
     org-gcal ;; sync org-mode with gcalendar
     org-pomodoro ;; to structure your time
     (pomidor :variables ;; to softly keep work/rest balance
@@ -438,6 +438,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default dotspacemacs-configuration-layers
     '(syntax-checking :variables syntax-checking-enable-by-default nil))
 
+  ;; TODO make this is default for olivetti mode
   (add-hook 'LaTeX-mode-hook (lambda () (set-fill-column 103))) ;; half monitor width
   ;; (add-hook 'LaTeX-mode-hook 'magic-latex-buffer)
 
@@ -515,7 +516,7 @@ you should place your code here."
   ;; (ligo-setup-lsp)
   ;; (add-hook 'ligo-caml-mode-hook #'lsp)
 
-  (require 'org-protocol)
+  ;; (require 'org-protocol) ;; TODO: cause nondet error "failure of reading \"#<\""
   ;; (require 'org-gcal) ;; TODO: try to replace with use-package
   ;; (setq org-gcal-client-id "CENSORED_CONTENT"
   ;;       org-gcal-client-secret "CENSORED_CONTENT")
@@ -744,6 +745,14 @@ you should place your code here."
          (org-clock-in))))
     )
   (global-set-key (kbd "M-m a o C p") 'org-clock-in-past)
+  (defun org-clock-last-idle ()
+    "Insert clock record from the moment until now (TODO)"
+    )
+  (defun org-clock-sort-records () "TODO")
+  (defun org-clock-jump-to-last-recrod () "TODO")
+  (defun org-move-clock-to-parent-heading () "TODO")
+  (defun org-sort-clock-record () "TODO")
+  (defun org-last-recorded-time () "TODO")
 
   (defun org-dblock-write:file-tags (params)
     "Bookmarks: show list of tags (bookmarks categories)"
