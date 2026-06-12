@@ -532,7 +532,7 @@ you should place your code here."
         (buffer-string)
         "
 " t)))
-    (dashboard-items '((recents . 3) (bookmarks . 17) (projects . 3)))
+    (dashboard-items '((bookmarks . 17) (recents . 5) (projects . 5)))
     (dashboard-set-file-icons t)
     (dashboard-set-heading-icons t)
     (dashboard-set-navigator nil)
